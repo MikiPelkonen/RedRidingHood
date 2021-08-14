@@ -11,9 +11,11 @@ namespace RedRidingHood
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
         RenderTarget2D _renderTarget;
+        Texture2D _primitiveSpriteSheetTexture;
 
         // Entities
         EntityManager _entityManager;
+        World _world;
 
         public static int ScreenHeight;
         public static int ScreenWidth;
@@ -51,7 +53,12 @@ namespace RedRidingHood
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheet");
+
+            _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture);
+
+            _entityManager.Add(_world);
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -60,6 +67,8 @@ namespace RedRidingHood
                 Exit();
 
             // TODO: Add your update logic here
+
+            _entityManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -73,6 +82,11 @@ namespace RedRidingHood
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: GAME DRAW LOGIC HERE
+            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, RasterizerState.CullNone);
+
+            _entityManager.Draw(_spriteBatch, gameTime);
+
+            _spriteBatch.End();
 
 
             GraphicsDevice.SetRenderTarget(null);

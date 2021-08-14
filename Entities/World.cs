@@ -11,6 +11,11 @@ namespace RedRidingHood.Entities
     {
         private readonly Cell[,] _world;
 
+        public World(Cell[,] world)
+        {
+            _world = world;
+        }
+
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             foreach (Cell c in _world)
@@ -25,7 +30,20 @@ namespace RedRidingHood.Entities
 
     public class WorldBuilder
     {
+        public World CreateWorld(Texture2D spriteSheet)
+        {
+            Cell[,] cells = new Cell[10, 10];
 
+            for (int row = 0; row < cells.GetLength(0); row++)
+            {
+                for (int column = 0; column < cells.GetLength(1); column++)
+                {
+                    cells[row, column] = new Cell(new Location(row, column, 0), CellType.Grass, new Sprite(spriteSheet, 0, 0, 16, 16));
+                }
+            }
+
+            return new World(cells);
+        }
     }
 
     public class Cell
@@ -45,7 +63,7 @@ namespace RedRidingHood.Entities
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Sprite.Draw(spriteBatch, Location.ToVector(), Depth);
+            Sprite.Draw(spriteBatch, Location, Depth);
         }
     }
 
@@ -62,6 +80,8 @@ namespace RedRidingHood.Entities
             Floor = floor;
         }
 
+        public static implicit operator Vector2(Location loc) => new Vector2(loc.Column * 32, loc.Row * 32);
+
         public override string ToString()
         {
             return $"Row: {Row}\nColumn: {Column}\nFloor: {Floor}";
@@ -73,5 +93,5 @@ namespace RedRidingHood.Entities
         }
     }
 
-    public enum CellType { Empty, Grass, Road, Lake, Lodge, RedLodge, GLodge, Tree }
+    public enum CellType { Empty, Grass, Road, Lake, Lodge, RedLodge, GrandLodge, Tree }
 }
