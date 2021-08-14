@@ -1,14 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using RedRidingHood.Entities;
 
 namespace RedRidingHood
 {
     public class RedRidingHoodGame : Game
     {
+        //Graphics
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
         RenderTarget2D _renderTarget;
+
+        // Entities
+        EntityManager _entityManager;
 
         public static int ScreenHeight;
         public static int ScreenWidth;
@@ -18,6 +23,7 @@ namespace RedRidingHood
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _entityManager = new EntityManager();
         }
 
         protected override void Initialize()
