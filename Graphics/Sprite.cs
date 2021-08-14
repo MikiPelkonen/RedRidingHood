@@ -25,9 +25,9 @@ namespace RedRidingHood.Graphics
             Height = height;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position)
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, float depth)
         {
-            spriteBatch.Draw(Texture, position, new Rectangle(X, Y, Width, Height), TintColor);
+            spriteBatch.Draw(Texture, position, new Rectangle(X, Y, Width, Height), TintColor, 0f, Vector2.Zero, 2f, SpriteEffects.None, depth);
         }
     }
 }

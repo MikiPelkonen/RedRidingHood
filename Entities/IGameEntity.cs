@@ -8,7 +8,6 @@ namespace RedRidingHood.Entities
 {
     public interface IGameEntity
     {
-        int DrawOrder { get; }
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch, GameTime gameTime);
     }

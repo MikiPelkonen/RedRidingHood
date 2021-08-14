@@ -32,7 +32,7 @@ namespace RedRidingHood.Entities
         // Draw entities sorted by DrawOrder
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            foreach (IGameEntity entity in _entities.OrderBy(e => e.DrawOrder))
+            foreach (IGameEntity entity in _entities)
                 entity.Draw(spriteBatch, gameTime);
         }
 
