@@ -6,8 +6,12 @@ namespace RedRidingHood
 {
     public class RedRidingHoodGame : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        GraphicsDeviceManager _graphics;
+        SpriteBatch _spriteBatch;
+        RenderTarget2D _renderTarget;
+
+        public static int ScreenHeight;
+        public static int ScreenWidth;
 
         public RedRidingHoodGame()
         {
@@ -18,7 +22,21 @@ namespace RedRidingHood
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // Screen resolution to 640 * 360 ( 16:9 )
+            _graphics.PreferredBackBufferWidth = 640;
+            _graphics.PreferredBackBufferHeight = 360;
+            _graphics.ApplyChanges();
+
+            ScreenWidth = _graphics.PreferredBackBufferWidth;
+            ScreenHeight = _graphics.PreferredBackBufferHeight;
+
+            _renderTarget = new RenderTarget2D(
+                GraphicsDevice,
+                ScreenWidth / 2,
+                ScreenHeight / 2,
+                false,
+                GraphicsDevice.PresentationParameters.BackBufferFormat,
+                DepthFormat.Depth24);
 
             base.Initialize();
         }
@@ -40,11 +58,34 @@ namespace RedRidingHood
             base.Update(gameTime);
         }
 
+        protected void DrawSceneToTexture(RenderTarget2D renderTarget, GameTime gameTime)
+        {
+            // Set rendertarget
+            GraphicsDevice.SetRenderTarget(renderTarget);
+
+            // Draw the scene
+            GraphicsDevice.Clear(Color.Black);
+
+            // TODO: GAME DRAW LOGIC HERE
+
+
+            GraphicsDevice.SetRenderTarget(null);
+        }
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            DrawSceneToTexture(_renderTarget, gameTime);
+
+            // Clear screen to black
+            GraphicsDevice.Clear(Color.Black);
+
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, RasterizerState.CullNone);
+
+            _spriteBatch.Draw(_renderTarget, new Rectangle(0, 0, ScreenWidth, ScreenHeight), Color.White);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
