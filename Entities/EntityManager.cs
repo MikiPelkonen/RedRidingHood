@@ -29,7 +29,7 @@ namespace RedRidingHood.Entities
             _entitiesToRemove.Clear();
         }
 
-        // Draw entities sorted by DrawOrder
+       
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             foreach (IGameEntity entity in _entities)

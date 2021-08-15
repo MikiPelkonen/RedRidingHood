@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RedRidingHood.Entities;
+using RedRidingHood.Graphics;
 
 namespace RedRidingHood
 {
@@ -16,6 +17,7 @@ namespace RedRidingHood
         // Entities
         EntityManager _entityManager;
         World _world;
+        Player _player;
 
         public static int ScreenHeight;
         public static int ScreenWidth;
@@ -56,8 +58,10 @@ namespace RedRidingHood
             _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheet");
 
             _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture);
+            _player = new Player(new Location(1, 0, 0), new Sprite(_primitiveSpriteSheetTexture, 48, 16, 16, 32));
 
             _entityManager.Add(_world);
+            _entityManager.Add(_player);
             
         }
 
