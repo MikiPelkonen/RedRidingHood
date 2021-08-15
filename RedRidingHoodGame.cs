@@ -61,10 +61,10 @@ namespace RedRidingHood
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheet");
+            _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheetTwo");
 
             _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture);
-            _player = new Player(new Location(1, 0, 0), new Sprite(_primitiveSpriteSheetTexture, 48, 16, 16, 16));
+            _player = new Player(new Location(1, 0, 0), _primitiveSpriteSheetTexture);
             _inputController = new InputController(_player, _world);
             _camera = new Camera();
 
