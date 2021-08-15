@@ -13,7 +13,6 @@ namespace RedRidingHood.Entities
         private const float MOVE_SPEED = 0.6f;
 
         Sprite _sprite;
-        Vector2 _offset = new Vector2(0, -32);
         float _timeElapsed;
 
 
@@ -69,7 +68,7 @@ namespace RedRidingHood.Entities
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            _sprite.Draw(spriteBatch, Position + _offset, Depth);
+            _sprite.Draw(spriteBatch, Position, Depth);
         }
     }
 

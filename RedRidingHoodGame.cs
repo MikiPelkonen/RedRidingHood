@@ -37,14 +37,15 @@ namespace RedRidingHood
 
         protected override void Initialize()
         {
-            // Screen resolution to 640 * 360 ( 16:9 )
-            _graphics.PreferredBackBufferWidth = 640;
-            _graphics.PreferredBackBufferHeight = 360;
+            // Screen resolution to 1280 * 720 ( 16:9 )
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
             _graphics.ApplyChanges();
 
             ScreenWidth = _graphics.PreferredBackBufferWidth;
             ScreenHeight = _graphics.PreferredBackBufferHeight;
 
+            // Set renderTarget resolution to 640 * 360 ( 16 : 9 )
             _renderTarget = new RenderTarget2D(
                 GraphicsDevice,
                 ScreenWidth / 2,
@@ -63,7 +64,7 @@ namespace RedRidingHood
             _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheet");
 
             _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture);
-            _player = new Player(new Location(1, 0, 0), new Sprite(_primitiveSpriteSheetTexture, 48, 16, 16, 32));
+            _player = new Player(new Location(1, 0, 0), new Sprite(_primitiveSpriteSheetTexture, 48, 16, 16, 16));
             _inputController = new InputController(_player, _world);
             _camera = new Camera();
 
