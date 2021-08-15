@@ -25,7 +25,7 @@ namespace RedRidingHood.Entities
         public Direction Direction { get; set; }
         public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
         public float Depth => Location.Floor * 0.1f + Location.Row * 0.01f + 0.1f;
-        public ICommand[] Commands { get; } = new ICommand[1] { new MoveCommand(Direction.South)};
+        public ICommand[] Commands { get; } = new ICommand[1];
         public Character(Location startLocation, Sprite sprite)
         {
             _sprite = sprite;
@@ -41,8 +41,12 @@ namespace RedRidingHood.Entities
             {
                 case CharacterState.Idle:
                     _timeElapsed = 0;
-                    foreach (ICommand command in Commands)
-                        command.Run(this);
+                    if (Commands[0] != null)
+                    {
+                        foreach (ICommand command in Commands)
+                            command.Run(this);
+                    }
+                    Commands[0] = null;
                     break;
                 case CharacterState.Moving:
                     float time = _timeElapsed / MOVE_SPEED;

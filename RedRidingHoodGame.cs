@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using RedRidingHood.Core;
 using RedRidingHood.Entities;
 using RedRidingHood.Graphics;
 
@@ -13,6 +14,9 @@ namespace RedRidingHood
         SpriteBatch _spriteBatch;
         RenderTarget2D _renderTarget;
         Texture2D _primitiveSpriteSheetTexture;
+
+        //Core
+        InputController _inputController;
 
         // Entities
         EntityManager _entityManager;
@@ -59,6 +63,7 @@ namespace RedRidingHood
 
             _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture);
             _player = new Player(new Location(1, 0, 0), new Sprite(_primitiveSpriteSheetTexture, 48, 16, 16, 32));
+            _inputController = new InputController(_player, _world);
 
             _entityManager.Add(_world);
             _entityManager.Add(_player);
@@ -72,6 +77,7 @@ namespace RedRidingHood
 
             // TODO: Add your update logic here
 
+            _inputController.ProcessControls(gameTime);
             _entityManager.Update(gameTime);
 
             base.Update(gameTime);
