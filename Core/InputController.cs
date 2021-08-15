@@ -36,7 +36,6 @@ namespace RedRidingHood.Core
                 else if (keyboardState.IsKeyDown(Keys.D))
                     _player.Commands[0] = new MoveCommand(Direction.East);
             }
-            
         }
     }
 }

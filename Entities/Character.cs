@@ -93,9 +93,7 @@ namespace RedRidingHood.Entities
                     break;
 
                 case CharacterState.Moving:
-
                     _animations[_currentDirection].Draw(spriteBatch, Position, Depth);
-
                     break;
             }
 
