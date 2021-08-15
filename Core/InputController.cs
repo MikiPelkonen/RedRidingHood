@@ -23,17 +23,18 @@ namespace RedRidingHood.Core
         public void ProcessControls(GameTime gameTime)
         {
             keyboardState = Keyboard.GetState();
-
-            switch (_player.State)
+            
+            if (_player.State == CharacterState.Idle)
             {
-                case CharacterState.Idle:
-                    if (keyboardState.IsKeyDown(Keys.Down))
-                    {
-                        _player.Commands[0] = new MoveCommand(Direction.South);
-                    }
-                    break;
-                case CharacterState.Moving:
-                    break;
+                //Basic Movement commands
+                if (keyboardState.IsKeyDown(Keys.S))
+                    _player.Commands[0] = new MoveCommand(Direction.South);
+                else if (keyboardState.IsKeyDown(Keys.W))
+                    _player.Commands[0] = new MoveCommand(Direction.North);
+                else if (keyboardState.IsKeyDown(Keys.A))
+                    _player.Commands[0] = new MoveCommand(Direction.West);
+                else if (keyboardState.IsKeyDown(Keys.D))
+                    _player.Commands[0] = new MoveCommand(Direction.East);
             }
             
         }

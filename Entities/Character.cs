@@ -48,6 +48,7 @@ namespace RedRidingHood.Entities
                     }
                     Commands[0] = null;
                     break;
+
                 case CharacterState.Moving:
                     float time = _timeElapsed / MOVE_SPEED;
 

@@ -17,6 +17,7 @@ namespace RedRidingHood
 
         //Core
         InputController _inputController;
+        Camera _camera;
 
         // Entities
         EntityManager _entityManager;
@@ -64,6 +65,7 @@ namespace RedRidingHood
             _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture);
             _player = new Player(new Location(1, 0, 0), new Sprite(_primitiveSpriteSheetTexture, 48, 16, 16, 32));
             _inputController = new InputController(_player, _world);
+            _camera = new Camera();
 
             _entityManager.Add(_world);
             _entityManager.Add(_player);
@@ -76,9 +78,11 @@ namespace RedRidingHood
                 Exit();
 
             // TODO: Add your update logic here
-
+            
             _inputController.ProcessControls(gameTime);
             _entityManager.Update(gameTime);
+            _camera.Follow(_player);
+
 
             base.Update(gameTime);
         }
@@ -92,7 +96,7 @@ namespace RedRidingHood
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: GAME DRAW LOGIC HERE
-            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, RasterizerState.CullNone);
+            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, RasterizerState.CullNone, transformMatrix: _camera.Transform);
 
             _entityManager.Draw(_spriteBatch, gameTime);
 
