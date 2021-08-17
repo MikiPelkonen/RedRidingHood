@@ -66,7 +66,7 @@ namespace RedRidingHood
             _worldSheet = Content.Load<Texture2D>("Primitives/WorldProgress");
 
             _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture, _worldSheet);
-            _player = new Player(new Location(1, 0, 0), _primitiveSpriteSheetTexture);
+            _player = new Player(new Location(10, 10, 0), _primitiveSpriteSheetTexture);
             _inputController = new InputController(_player, _world);
             _camera = new Camera();
 

@@ -31,5 +31,10 @@ namespace RedRidingHood.Entities
         {
 
         }
+
+        public Cell GetCellByLocation(Location loc)
+        {
+            return _world[loc.Row, loc.Column];
+        }
     }
 }

@@ -22,24 +22,31 @@ namespace RedRidingHood.Entities
             Sprite One = new Sprite(spriteSheet, 64, 48, 16, 32);
             Sprite Two = new Sprite(spriteSheet, 64, 80, 16, 32);
 
-            cells[2, 2] = new Cell(new Location(2, 2, 0), CellType.Tree, One);
-            cells[1, 10] = new Cell(new Location(1, 10, 0), CellType.Tree, One);
-            cells[2, 9] = new Cell(new Location(2, 9, 0), CellType.Tree, Two);
-            cells[1, 13] = new Cell(new Location(1, 13, 0), CellType.Tree, Two);
-            cells[5, 5] = new Cell(new Location(5, 5, 0), CellType.Tree, Two);
-            cells[7, 0] = new Cell(new Location(6, 0, 0), CellType.Tree, One);
-            cells[8, 6] = new Cell(new Location(6, 6, 0), CellType.Tree, One);
-            cells[6, 7] = new Cell(new Location(5, 7, 0), CellType.Tree, Two);
-            cells[4, 10] = new Cell(new Location(4, 10, 0), CellType.Tree, One);
-            cells[8, 16] = new Cell(new Location(8, 16, 0), CellType.Tree, Two);
-            cells[7, 17] = new Cell(new Location(6, 17, 0), CellType.Tree, One);
-            cells[9, 19] = new Cell(new Location(9, 19, 0), CellType.Tree, Two);
-            cells[10, 18] = new Cell(new Location(10, 18, 0), CellType.Tree, One);
-            cells[11, 15] = new Cell(new Location(11, 15, 0), CellType.Tree, Two);
-            cells[12, 8] = new Cell(new Location(12, 8, 0), CellType.Tree, Two);
+            cells[3, 2] = new Cell(new Location(3, 2, 0), CellType.Tree, One);
+            cells[2, 10] = new Cell(new Location(2, 10, 0), CellType.Tree, One);
+            cells[3, 9] = new Cell(new Location(3, 9, 0), CellType.Tree, Two);
+            cells[2, 13] = new Cell(new Location(2, 13, 0), CellType.Tree, Two);
+            cells[6, 5] = new Cell(new Location(6, 5, 0), CellType.Tree, Two);
+            cells[7, 0] = new Cell(new Location(7, 0, 0), CellType.Tree, One);
+            cells[7, 6] = new Cell(new Location(7, 6, 0), CellType.Tree, One);
+            cells[6, 7] = new Cell(new Location(6, 7, 0), CellType.Tree, Two);
+            cells[5, 10] = new Cell(new Location(5, 10, 0), CellType.Tree, One);
+            cells[9, 16] = new Cell(new Location(9, 16, 0), CellType.Tree, Two);
+            cells[7, 17] = new Cell(new Location(7, 17, 0), CellType.Tree, One);
+            cells[10, 19] = new Cell(new Location(10, 19, 0), CellType.Tree, Two);
+            cells[11, 18] = new Cell(new Location(11, 18, 0), CellType.Tree, One);
+            cells[12, 15] = new Cell(new Location(12, 15, 0), CellType.Tree, Two);
+            cells[13, 8] = new Cell(new Location(13, 8, 0), CellType.Tree, Two);
+            cells[14, 12] = new Cell(new Location(14, 12, 0), CellType.Tree, One);
+            cells[17, 9] = new Cell(new Location(17, 9, 0), CellType.Tree, Two);
+            cells[17, 0] = new Cell(new Location(17, 0, 0), CellType.Tree, One);
+            cells[16, 4] = new Cell(new Location(16, 4, 0), CellType.Tree, Two);
+            cells[17, 5] = new Cell(new Location(17, 5, 0), CellType.Tree, One);
+            cells[19, 18] = new Cell(new Location(19, 18, 0), CellType.Tree, One);
+            cells[18, 19] = new Cell(new Location(18, 19, 0), CellType.Tree, Two);
 
 
-            // TODO: Figure out why row 7 bugged...
+            // TODO: Figure out why row 7 bugged... Solved with 1.5 increment to cell buffer.
 
             return new World(cells, world);
         }

@@ -28,13 +28,13 @@ namespace RedRidingHood.Core
             {
                 //Basic Movement commands
                 if (keyboardState.IsKeyDown(Keys.S))
-                    _player.Commands[0] = new MoveCommand(Direction.South);
+                    _player.Commands[0] = new MoveCommand(Direction.South, _world);
                 else if (keyboardState.IsKeyDown(Keys.W))
-                    _player.Commands[0] = new MoveCommand(Direction.North);
+                    _player.Commands[0] = new MoveCommand(Direction.North, _world);
                 else if (keyboardState.IsKeyDown(Keys.A))
-                    _player.Commands[0] = new MoveCommand(Direction.West);
+                    _player.Commands[0] = new MoveCommand(Direction.West, _world);
                 else if (keyboardState.IsKeyDown(Keys.D))
-                    _player.Commands[0] = new MoveCommand(Direction.East);
+                    _player.Commands[0] = new MoveCommand(Direction.East, _world);
             }
         }
     }

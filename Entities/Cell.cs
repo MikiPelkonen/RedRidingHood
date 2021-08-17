@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using RedRidingHood.Graphics;
 
 namespace RedRidingHood.Entities
@@ -26,7 +27,15 @@ namespace RedRidingHood.Entities
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Sprite.Draw(spriteBatch, Location, Depth);
+            Vector2 offset = new Vector2(0, 0);
+            float depth = Depth;
+            if (Type == CellType.Tree)
+            {
+                offset = new Vector2(0, -32);
+                depth -= 0.01f;
+            }
+
+            Sprite.Draw(spriteBatch, Location + offset, depth);
         }
     }
 }
