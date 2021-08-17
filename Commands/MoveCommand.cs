@@ -23,6 +23,7 @@ namespace RedRidingHood.Commands
                 Direction.West =>  new Location(character.Location.Row, character.Location.Column - 1, character.Location.Floor)
             };
 
+
             character.Direction = Direction;
             character.State = CharacterState.Moving;
         }

@@ -21,7 +21,7 @@ namespace RedRidingHood.Graphics
 
         public void Update(GameTime gameTime)
         {
-            double timePerFrame = 150;
+            double timePerFrame = 125;
 
             Time += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
 

@@ -9,13 +9,14 @@ namespace RedRidingHood
 {
     public class RedRidingHoodGame : Game
     {
-        //Graphics
+        // Graphics
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
         RenderTarget2D _renderTarget;
         Texture2D _primitiveSpriteSheetTexture;
+        Texture2D _worldSheet;
 
-        //Core
+        // Core
         InputController _inputController;
         Camera _camera;
 
@@ -62,8 +63,9 @@ namespace RedRidingHood
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheetTwo");
+            _worldSheet = Content.Load<Texture2D>("Primitives/World");
 
-            _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture);
+            _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture, _worldSheet);
             _player = new Player(new Location(1, 0, 0), _primitiveSpriteSheetTexture);
             _inputController = new InputController(_player, _world);
             _camera = new Camera();

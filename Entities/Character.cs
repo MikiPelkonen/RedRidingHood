@@ -10,11 +10,12 @@ namespace RedRidingHood.Entities
 {
     public class Character : IGameEntity
     {
-        private const float MOVE_SPEED = 0.6f;
+        private const float MOVE_SPEED = 0.5f;
 
         int _currentDirection;
 
         float _timeElapsed;
+        Vector2 _offset = new Vector2(0, -16);
 
         protected SpriteAnimation[] _animations;
         protected Sprite[] _sprites;
@@ -89,11 +90,11 @@ namespace RedRidingHood.Entities
             switch (State)
             {
                 case CharacterState.Idle:
-                    _sprites[_currentDirection].Draw(spriteBatch, Position, Depth);
+                    _sprites[_currentDirection].Draw(spriteBatch, Position + _offset, Depth);
                     break;
 
                 case CharacterState.Moving:
-                    _animations[_currentDirection].Draw(spriteBatch, Position, Depth);
+                    _animations[_currentDirection].Draw(spriteBatch, Position + _offset, Depth);
                     break;
             }
 

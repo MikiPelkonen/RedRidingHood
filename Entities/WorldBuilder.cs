@@ -5,7 +5,7 @@ namespace RedRidingHood.Entities
 {
     public class WorldBuilder
     {
-        public World CreateWorld(Texture2D spriteSheet)
+        public World CreateWorld(Texture2D spriteSheet, Texture2D world)
         {
             Cell[,] cells = new Cell[10, 10];
 
@@ -17,7 +17,7 @@ namespace RedRidingHood.Entities
                 }
             }
 
-            return new World(cells);
+            return new World(cells, world);
         }
     }
 }
