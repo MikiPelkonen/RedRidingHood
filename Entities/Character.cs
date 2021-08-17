@@ -26,8 +26,10 @@ namespace RedRidingHood.Entities
         public Vector2 Position { get; set; }
         public CharacterState State { get; set; }
         public Direction Direction { get; set; }
-        public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
-        public float Depth => Location.Floor * 0.1f + Location.Row * 0.01f;
+        public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
+        public float Depth => (float)(Location.Row * 0.01f);
+
+
         public ICommand[] Commands { get; } = new ICommand[1];
         public Character(Location startLocation)
         {
@@ -64,6 +66,7 @@ namespace RedRidingHood.Entities
                     break;
 
                 case CharacterState.Moving:
+                    
                     float time = _timeElapsed / MOVE_SPEED;
 
                     _animations[_currentDirection].Update(gameTime);
