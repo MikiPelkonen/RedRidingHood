@@ -27,7 +27,7 @@ namespace RedRidingHood.Entities
         public CharacterState State { get; set; }
         public Direction Direction { get; set; }
         public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, 32, 64);
-        public float Depth => Location.Floor * 0.1f + Location.Row * 0.01f + 0.1f;
+        public float Depth => Location.Floor * 0.1f + Location.Row * 0.01f;
         public ICommand[] Commands { get; } = new ICommand[1];
         public Character(Location startLocation)
         {

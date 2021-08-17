@@ -19,7 +19,12 @@ namespace RedRidingHood.Entities
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.Draw(_worldTexture, Vector2.Zero, new Rectangle(0, 0, 320, 320), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_worldTexture, Vector2.Zero, new Rectangle(0, 0, 320, 352), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
+            foreach (Cell c in _world)
+            {
+                if (c.Type == CellType.Tree)
+                    c.Draw(spriteBatch);
+            }
         }
 
         public void Update(GameTime gameTime)

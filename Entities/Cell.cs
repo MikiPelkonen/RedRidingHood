@@ -9,8 +9,13 @@ namespace RedRidingHood.Entities
         public CellType Type { get; }
         public Sprite Sprite { get; }
 
-        public float Depth => Location.Floor * 0.1f + Location.Row * 0.01f;
+        public float Depth => Location.Floor * 0.1f + Location.Row * 0.01f + 0.02f;
 
+        public Cell(Location location, CellType type)
+        {
+            Location = location;
+            Type = type;
+        }
         public Cell(Location location, CellType type, Sprite sprite)
         {
             Location = location;
