@@ -22,6 +22,27 @@ namespace RedRidingHood.Entities
             Sprite One = new Sprite(spriteSheet, 64, 48, 16, 32);
             Sprite Two = new Sprite(spriteSheet, 64, 80, 16, 32);
 
+
+            // HOUSES
+
+            // RedridingHood
+            cells[8, 2] = new Cell(new Location(8, 2, 0), CellType.Lodge, new Sprite(spriteSheet, 0, 160, 48, 32));
+            cells[8, 3] = new Cell(new Location(8, 3, 0), CellType.Lodge);
+            cells[8, 4] = new Cell(new Location(8, 4, 0), CellType.Lodge);
+            cells[5, 2] = new Cell(new Location(5, 2, 0), CellType.Roof, new Sprite(spriteSheet, 0, 128, 48, 32));
+            // Grandma
+            cells[3, 16] = new Cell(new Location(3, 16, 0), CellType.Lodge, new Sprite(spriteSheet, 0, 160, 48, 32));
+            cells[3, 17] = new Cell(new Location(3, 17, 0), CellType.Lodge);
+            cells[3, 18] = new Cell(new Location(3, 18, 0), CellType.Lodge);
+            cells[0, 16] = new Cell(new Location(0, 16, 0), CellType.Roof, new Sprite(spriteSheet, 0, 128, 48, 32));
+            // Hunter/Player
+            cells[18, 14] = new Cell(new Location(18, 14, 0), CellType.Lodge, new Sprite(spriteSheet, 0, 160, 48, 32));
+            cells[18, 15] = new Cell(new Location(18, 15, 0), CellType.Lodge);
+            cells[18, 16] = new Cell(new Location(18, 16, 0), CellType.Lodge);
+            cells[15, 14] = new Cell(new Location(15, 14, 0), CellType.Roof, new Sprite(spriteSheet, 0, 128, 48, 32));
+
+
+            // TREES
             cells[3, 2] = new Cell(new Location(3, 2, 0), CellType.Tree, One);
             cells[2, 10] = new Cell(new Location(2, 10, 0), CellType.Tree, One);
             cells[3, 9] = new Cell(new Location(3, 9, 0), CellType.Tree, Two);

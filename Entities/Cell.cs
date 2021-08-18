@@ -34,6 +34,13 @@ namespace RedRidingHood.Entities
                 offset = new Vector2(0, -32);
                 depth -= 0.01f;
             }
+            if (Type == CellType.Lodge)
+            {
+                offset = new Vector2(0, -32);
+                depth -= 0.01f;
+            }
+            if (Type == CellType.Roof)
+                depth += 0.2f;
 
             Sprite.Draw(spriteBatch, Location + offset, depth);
         }

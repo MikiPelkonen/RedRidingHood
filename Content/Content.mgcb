@@ -25,6 +25,18 @@
 /processorParam:TextureFormat=Color
 /build:Primitives/PrimitiveSpriteSheet.png
 
+#begin Primitives/PrimitiveSpriteSheetFour.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Primitives/PrimitiveSpriteSheetFour.png
+
 #begin Primitives/PrimitiveSpriteSheetTwo.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -49,6 +61,18 @@
 /processorParam:TextureFormat=Color
 /build:Primitives/World.png
 
+#begin Primitives/WorldHouseless.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Primitives/WorldHouseless.png
+
 #begin Primitives/WorldProgress.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -60,16 +84,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Primitives/WorldProgress.png
-
-#begin PrimitiveSpriteSheetThree.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:PrimitiveSpriteSheetThree.png
 
