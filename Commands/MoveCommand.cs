@@ -26,13 +26,22 @@ namespace RedRidingHood.Commands
             };
 
             character.Direction = Direction;
-            if (IsLegalCell(locationToCome, character.StartLocation, Direction))
+            if (IsLegalMove(locationToCome, character.StartLocation, Direction))
             {
                 character.TargetLocation = locationToCome;
                 
                 character.State = CharacterState.Moving;
             }
         }
+
+        bool IsLegalMove(Location loc, Location charLocation, Direction direction)
+        {
+            if (IsInsideMap(loc) && IsLegalCell(loc, charLocation, direction))
+                return true;
+            return false;
+        }
+
+        bool IsInsideMap(Location loc) => loc.Row >= 0 && loc.Row <= 21 && loc.Column >= 0 && loc.Column <= 19;
 
         bool IsLegalCell(Location loc, Location charLocation, Direction direction)
         {

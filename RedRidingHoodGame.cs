@@ -24,6 +24,7 @@ namespace RedRidingHood
         EntityManager _entityManager;
         World _world;
         Player _player;
+        RedGirl _redGirl;
 
         public static int ScreenHeight;
         public static int ScreenWidth;
@@ -70,8 +71,12 @@ namespace RedRidingHood
             _inputController = new InputController(_player, _world);
             _camera = new Camera();
 
+            // Load NPCS
+            _redGirl = new RedGirl(new Location(9, 3, 0), _primitiveSpriteSheetTexture);
+
             _entityManager.Add(_world);
             _entityManager.Add(_player);
+            _entityManager.Add(_redGirl);
             
         }
 

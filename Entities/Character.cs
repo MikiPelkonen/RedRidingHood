@@ -10,11 +10,11 @@ namespace RedRidingHood.Entities
 {
     public class Character : IGameEntity
     {
-        private const float MOVE_SPEED = 0.5f;
+        protected const float MOVE_SPEED = 0.5f;
 
-        int _currentDirection;
+        protected int _currentDirection;
 
-        float _timeElapsed;
+        protected float _timeElapsed;
         Vector2 _offset = new Vector2(0, -16);
 
         protected SpriteAnimation[] _animations;
@@ -88,7 +88,6 @@ namespace RedRidingHood.Entities
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            
 
             switch (State)
             {
@@ -117,6 +116,64 @@ namespace RedRidingHood.Entities
             };
 
             _animations = new SpriteAnimation[] 
+            {
+                new SpriteAnimation(
+                    new Sprite[]
+                    {
+                        new Sprite(texture, 0, 67, 16, 18),
+                        new Sprite(texture, 16, 67, 16, 18),
+                        new Sprite(texture, 32, 67, 16, 18),
+                        new Sprite(texture, 48, 67, 16, 18),
+                        new Sprite(texture, 0, 16, 16, 16),
+                    }
+                    ),
+                new SpriteAnimation(
+                    new Sprite[]
+                    {
+                        new Sprite(texture, 0, 48, 16, 18),
+                        new Sprite(texture, 16, 48, 16, 18),
+                        new Sprite(texture, 32, 48, 16, 18),
+                        new Sprite(texture, 48, 48, 16, 18),
+                        new Sprite(texture, 0, 16, 16, 16),
+                    }
+                    ),
+                new SpriteAnimation(
+                    new Sprite[]
+                    {
+                        new Sprite(texture, 0, 86, 16, 18),
+                        new Sprite(texture, 16, 86, 16, 18),
+                        new Sprite(texture, 32, 86, 16, 18),
+                        new Sprite(texture, 48, 86, 16, 18),
+                        new Sprite(texture, 0, 16, 16, 16),
+                    }
+                    ),
+                new SpriteAnimation(
+                    new Sprite[]
+                    {
+                        new Sprite(texture, 0, 104, 16, 18),
+                        new Sprite(texture, 16, 104, 16, 18),
+                        new Sprite(texture, 32, 104, 16, 18),
+                        new Sprite(texture, 48, 104, 16, 18),
+                        new Sprite(texture, 0, 104, 16, 16),
+                    }
+                    )
+            };
+        }
+    }
+
+    public class RedGirl : Character
+    {
+        public RedGirl(Location startLocation, Texture2D texture) : base(startLocation)
+        {
+            _sprites = new Sprite[]
+            {
+                new Sprite(texture, 16, 67, 16, 18),
+                new Sprite(texture, 16, 48, 16, 18),
+                new Sprite(texture, 16, 86, 16, 18),
+                new Sprite(texture, 16, 104, 16, 18)
+            };
+
+            _animations = new SpriteAnimation[]
             {
                 new SpriteAnimation(
                     new Sprite[]

@@ -7,7 +7,7 @@ namespace RedRidingHood.Entities
     {
         public World CreateWorld(Texture2D spriteSheet, Texture2D world)
         {
-            Cell[,] cells = new Cell[20, 22];
+            Cell[,] cells = new Cell[25, 22];
 
             
 
@@ -67,7 +67,7 @@ namespace RedRidingHood.Entities
             cells[18, 19] = new Cell(new Location(18, 19, 0), CellType.Tree, Two);
 
 
-            // TODO: Figure out why row 7 bugged... Solved with 1.5 increment to cell buffer.
+            // TODO: Figure out why row 7 bugged... Solved with right values in tree locations X_x.
 
             return new World(cells, world);
         }
