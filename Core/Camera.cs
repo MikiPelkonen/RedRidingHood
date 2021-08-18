@@ -23,7 +23,6 @@ namespace RedRidingHood.Core
                             MathHelper.Clamp(-target.Position.Y - (target.Rectangle.Height / 2), -525, -180),
                             0);
 
-
             Transform = position * offset;
         }
     }
