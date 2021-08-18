@@ -18,6 +18,7 @@ namespace RedRidingHood
 
         // Core
         InputController _inputController;
+        NPController _npController;
         Camera _camera;
 
         // Entities
@@ -73,6 +74,8 @@ namespace RedRidingHood
 
             // Load NPCS
             _redGirl = new RedGirl(new Location(9, 3, 0), _primitiveSpriteSheetTexture);
+
+            _npController = new NPController(_world, _redGirl);
 
             _entityManager.Add(_world);
             _entityManager.Add(_player);

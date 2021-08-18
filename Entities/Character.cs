@@ -19,36 +19,37 @@ namespace RedRidingHood.Entities
 
         protected SpriteAnimation[] _animations;
         protected Sprite[] _sprites;
-
+        
         public Location Location { get; set; }
         public Location TargetLocation { get; set; }
         public Location StartLocation { get; set; }
         public Vector2 Position { get; set; }
         public CharacterState State { get; set; }
+        public CharacterType Type { get; }
         public Direction Direction { get; set; }
+        protected int CurrentDirection => Direction switch
+        {
+            Direction.South => 0,
+            Direction.North => 1,
+            Direction.West => 2,
+            Direction.East => 3
+        };
         public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
         public float Depth => (float)(Location.Row * 0.01f);
 
 
         public ICommand[] Commands { get; } = new ICommand[1];
-        public Character(Location startLocation)
+        public Character(Location startLocation, CharacterType ctype)
         {
             Location = startLocation;
             Position = startLocation;
             State = CharacterState.Idle;
             Direction = Direction.South;
+            Type = ctype;
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
-            _currentDirection = Direction switch
-            {
-                Direction.South => 0,
-                Direction.North => 1,
-                Direction.West => 2,
-                Direction.East => 3
-            };
-
             switch (State)
             {
                 case CharacterState.Idle:
@@ -69,7 +70,7 @@ namespace RedRidingHood.Entities
                     
                     float time = _timeElapsed / MOVE_SPEED;
 
-                    _animations[_currentDirection].Update(gameTime);
+                    _animations[CurrentDirection].Update(gameTime);
 
                     if (_timeElapsed >= MOVE_SPEED)
                     {
@@ -92,11 +93,11 @@ namespace RedRidingHood.Entities
             switch (State)
             {
                 case CharacterState.Idle:
-                    _sprites[_currentDirection].Draw(spriteBatch, Position + _offset, Depth);
+                    _sprites[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
                     break;
 
                 case CharacterState.Moving:
-                    _animations[_currentDirection].Draw(spriteBatch, Position + _offset, Depth);
+                    _animations[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
                     break;
             }
 
@@ -105,7 +106,7 @@ namespace RedRidingHood.Entities
 
     public class Player : Character
     {
-        public Player(Location startLocation, Texture2D texture) : base(startLocation)
+        public Player(Location startLocation, Texture2D texture) : base(startLocation, CharacterType.Player)
         {
             _sprites = new Sprite[]
             {
@@ -163,7 +164,8 @@ namespace RedRidingHood.Entities
 
     public class RedGirl : Character
     {
-        public RedGirl(Location startLocation, Texture2D texture) : base(startLocation)
+        Random _random = new Random();
+        public RedGirl(Location startLocation, Texture2D texture) : base(startLocation, CharacterType.RedGirl)
         {
             _sprites = new Sprite[]
             {
@@ -217,8 +219,56 @@ namespace RedRidingHood.Entities
                     )
             };
         }
+
+        public event Action Move;
+        public CharacterType Type { get; } = CharacterType.RedGirl;
+
+        public override void Update(GameTime gameTime)
+        {
+            switch (State)
+            {
+                case CharacterState.Idle:
+                    if (_random.NextDouble() < 0.008)
+                    {
+                        Move?.Invoke();
+                    }
+
+                    _timeElapsed = 0;
+
+                    foreach (SpriteAnimation sa in _animations)
+                        sa.Time = 0;
+
+                    if (Commands[0] != null)
+                    {
+                        foreach (ICommand command in Commands)
+                            command.Run(this);
+                    }
+                    Commands[0] = null;
+                    break;
+
+                case CharacterState.Moving:
+
+                    float time = _timeElapsed / MOVE_SPEED;
+
+                    _animations[CurrentDirection].Update(gameTime);
+
+                    if (_timeElapsed >= MOVE_SPEED)
+                    {
+                        Position = TargetLocation;
+                        Location = TargetLocation;
+                        State = CharacterState.Idle;
+                    }
+                    else
+                    {
+                        Position = Vector2.Lerp(StartLocation, TargetLocation, MathHelper.Clamp(time, 0, 1));
+                        _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    }
+                    break;
+            }
+        }
     }
 
     public enum CharacterState { Idle, Moving, Dead }
     public enum Direction { North, South, East, West }
+    public enum CharacterType { Player, RedGirl, Grandma }
 }

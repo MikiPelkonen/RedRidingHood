@@ -26,7 +26,7 @@ namespace RedRidingHood.Commands
             };
 
             character.Direction = Direction;
-            if (IsLegalMove(locationToCome, character.StartLocation, Direction))
+            if (IsLegalMove(locationToCome, character.StartLocation, Direction, character.Type))
             {
                 character.TargetLocation = locationToCome;
                 
@@ -34,14 +34,21 @@ namespace RedRidingHood.Commands
             }
         }
 
-        bool IsLegalMove(Location loc, Location charLocation, Direction direction)
+        bool IsLegalMove(Location loc, Location charLocation, Direction direction, CharacterType ctype)
         {
-            if (IsInsideMap(loc) && IsLegalCell(loc, charLocation, direction))
+            if (IsInsideMap(loc, ctype) && IsLegalCell(loc, charLocation, direction))
                 return true;
             return false;
         }
 
-        bool IsInsideMap(Location loc) => loc.Row >= 0 && loc.Row <= 21 && loc.Column >= 0 && loc.Column <= 19;
+
+        bool IsInsideMap(Location loc, CharacterType ctype) 
+        {
+            if (ctype == CharacterType.RedGirl)
+                return loc.Row >= 9 && loc.Row <= 11 && loc.Column >= 1 && loc.Column <= 5;
+            else
+                return loc.Row >= 0 && loc.Row <= 21 && loc.Column >= 0 && loc.Column <= 19;
+        }
 
         bool IsLegalCell(Location loc, Location charLocation, Direction direction)
         {
