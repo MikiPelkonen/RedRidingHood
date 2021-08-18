@@ -19,9 +19,10 @@ namespace RedRidingHood.Core
                                 0);
 
             var position = Matrix.CreateTranslation(
-                            -target.Position.X - (target.Rectangle.Width / 2),
-                            -target.Position.Y - (target.Rectangle.Height / 2),
+                            MathHelper.Clamp(-target.Position.X - (target.Rectangle.Width / 2), -320, -320),
+                            MathHelper.Clamp(-target.Position.Y - (target.Rectangle.Height / 2), -525, -180),
                             0);
+
 
             Transform = position * offset;
         }

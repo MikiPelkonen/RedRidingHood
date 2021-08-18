@@ -164,6 +164,7 @@ namespace RedRidingHood.Entities
 
     public class RedGirl : Character
     {
+        private const float MOVE_INTERVAL = 0.008f;
         Random _random = new Random();
         public RedGirl(Location startLocation, Texture2D texture) : base(startLocation, CharacterType.RedGirl)
         {
@@ -228,7 +229,7 @@ namespace RedRidingHood.Entities
             switch (State)
             {
                 case CharacterState.Idle:
-                    if (_random.NextDouble() < 0.008)
+                    if (_random.NextDouble() < MOVE_INTERVAL)
                     {
                         Move?.Invoke();
                     }
