@@ -28,9 +28,18 @@ namespace RedRidingHood.Commands
             character.Direction = Direction;
             if (IsLegalMove(locationToCome, character.StartLocation, Direction, character.Type))
             {
-                character.TargetLocation = locationToCome;
                 
-                character.State = CharacterState.Moving;
+
+                if (World.GetCellByLocation(locationToCome).Type == CellType.Door)
+                {
+                    character.TargetLocation = new Location(locationToCome.Row, locationToCome.Column, 1);
+                    character.State = CharacterState.EnterRoom;
+                }
+                else
+                {
+                    character.TargetLocation = locationToCome;
+                    character.State = CharacterState.Moving;
+                }
             }
         }
 
@@ -58,6 +67,7 @@ namespace RedRidingHood.Commands
             if (targetCell.Type == CellType.Tree && direction == Direction.North) return false;
             if (currentCell.Type == CellType.Tree && direction == Direction.South) return false;
             if (targetCell.Type == CellType.Lodge) return false;
+            if (currentCell.Type == CellType.Floor && targetCell.Type == CellType.Empty) return false;
 
             return true;
         }

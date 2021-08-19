@@ -82,6 +82,26 @@ namespace RedRidingHood.Entities
                         _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     }
                     break;
+
+                case CharacterState.EnterRoom:
+                    float timer = _timeElapsed / MOVE_SPEED;
+                    Location = TargetLocation;
+                    _animations[CurrentDirection].Update(gameTime);
+
+                    if (_timeElapsed >= MOVE_SPEED)
+                    {
+                        Position = TargetLocation;
+                        
+                        State = CharacterState.Idle;
+                    }
+                    else
+                    {
+                        Position = Vector2.Lerp(StartLocation, TargetLocation, MathHelper.Clamp(timer, 0, 1));
+                        _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    }
+                    break;
+
+                    break;
             }
         }
 
@@ -95,6 +115,9 @@ namespace RedRidingHood.Entities
                     break;
 
                 case CharacterState.Moving:
+                    _animations[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
+                    break;
+                case CharacterState.EnterRoom:
                     _animations[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
                     break;
             }
@@ -133,6 +156,11 @@ namespace RedRidingHood.Entities
                         new Sprite(texture, 32, 48, 16, 18),
                         new Sprite(texture, 48, 48, 16, 18),
                         new Sprite(texture, 0, 16, 16, 16),
+                        new Sprite(texture, 0, 48, 16, 18),
+                        new Sprite(texture, 16, 48, 16, 18),
+                        new Sprite(texture, 32, 48, 16, 18),
+                        new Sprite(texture, 48, 48, 16, 18),
+                        new Sprite(texture, 0, 16, 16, 16)
                     }
                     ),
                 new SpriteAnimation(
@@ -266,7 +294,7 @@ namespace RedRidingHood.Entities
         }
     }
 
-    public enum CharacterState { Idle, Moving, Dead }
+    public enum CharacterState { Idle, Moving, EnterRoom, Dead }
     public enum Direction { North, South, East, West }
     public enum CharacterType { Player, RedGirl, Grandma }
 }

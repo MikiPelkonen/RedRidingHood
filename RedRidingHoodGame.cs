@@ -15,6 +15,7 @@ namespace RedRidingHood
         RenderTarget2D _renderTarget;
         Texture2D _primitiveSpriteSheetTexture;
         Texture2D _worldSheet;
+        Texture2D _houseInside;
 
         // Core
         InputController _inputController;
@@ -66,9 +67,11 @@ namespace RedRidingHood
 
             _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheetFour");
             _worldSheet = Content.Load<Texture2D>("Primitives/WorldHouseless");
+            _houseInside = Content.Load<Texture2D>("Primitives/InsideHouse");
 
-            _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture, _worldSheet);
             _player = new Player(new Location(10, 10, 0), _primitiveSpriteSheetTexture);
+            _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture, _worldSheet, _houseInside, _player);
+            
             _inputController = new InputController(_player, _world);
             _camera = new Camera();
 
