@@ -29,6 +29,11 @@ namespace RedRidingHood.Entities
             // RedridingHood
             cells[8, 2, 0] = new Cell(new Location(8, 2, 0), CellType.Lodge, new Sprite(spriteSheet, 0, 160, 48, 32));
             cells[8, 3, 0] = new Cell(new Location(8, 3, 0), CellType.Door);
+            cells[8, 4, 0] = new Cell(new Location(8, 4, 0), CellType.Lodge);
+            cells[7, 2, 0] = new Cell(new Location(7, 2, 0), CellType.Lodge);
+            cells[7, 3, 0] = new Cell(new Location(7, 3, 0), CellType.Lodge);
+            cells[7, 4, 0] = new Cell(new Location(7, 4, 0), CellType.Lodge);
+            cells[5, 2, 0] = new Cell(new Location(5, 2, 0), CellType.Roof, new Sprite(spriteSheet, 0, 128, 48, 32));
             cells[9, 3, 1] = new Cell(new Location(9, 3, 1), CellType.DoorOut);
             cells[6, 2, 1] = new Cell(new Location(6, 2, 1), CellType.Floor);
             cells[6, 3, 1] = new Cell(new Location(6, 3, 1), CellType.Floor);
@@ -41,8 +46,7 @@ namespace RedRidingHood.Entities
             cells[8, 4, 1] = new Cell(new Location(8, 4, 1), CellType.Floor);
 
 
-            cells[8, 4, 0] = new Cell(new Location(8, 4, 0), CellType.Lodge);
-            cells[5, 2, 0] = new Cell(new Location(5, 2, 0), CellType.Roof, new Sprite(spriteSheet, 0, 128, 48, 32));
+            
             // Grandma
             cells[3, 16, 0] = new Cell(new Location(3, 16, 0), CellType.Lodge, new Sprite(spriteSheet, 0, 160, 48, 32));
             cells[3, 17, 0] = new Cell(new Location(3, 17, 0), CellType.Lodge);
