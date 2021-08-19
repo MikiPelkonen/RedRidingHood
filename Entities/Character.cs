@@ -15,7 +15,7 @@ namespace RedRidingHood.Entities
         protected int _currentDirection;
 
         protected float _timeElapsed;
-        Vector2 _offset = new Vector2(0, -16);
+        protected Vector2 _offset = new Vector2(0, -16);
 
         protected SpriteAnimation[] _animations;
         protected Sprite[] _sprites;
@@ -67,13 +67,12 @@ namespace RedRidingHood.Entities
                 case CharacterState.Moving:
                     
                     float time = _timeElapsed / MOVE_SPEED;
-
+                    Location = TargetLocation;
                     _animations[CurrentDirection].Update(gameTime);
 
                     if (_timeElapsed >= MOVE_SPEED)
                     {
                         Position = TargetLocation;
-                        Location = TargetLocation;
                         State = CharacterState.Idle;
                     }
                     else
@@ -82,30 +81,10 @@ namespace RedRidingHood.Entities
                         _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     }
                     break;
-
-                case CharacterState.EnterRoom:
-                    float timer = _timeElapsed / MOVE_SPEED;
-                    Location = TargetLocation;
-                    _animations[CurrentDirection].Update(gameTime);
-
-                    if (_timeElapsed >= MOVE_SPEED)
-                    {
-                        Position = TargetLocation;
-                        
-                        State = CharacterState.Idle;
-                    }
-                    else
-                    {
-                        Position = Vector2.Lerp(StartLocation, TargetLocation, MathHelper.Clamp(timer, 0, 1));
-                        _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    }
-                    break;
-
-                    break;
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
 
             switch (State)
@@ -156,11 +135,6 @@ namespace RedRidingHood.Entities
                         new Sprite(texture, 32, 48, 16, 18),
                         new Sprite(texture, 48, 48, 16, 18),
                         new Sprite(texture, 0, 16, 16, 16),
-                        new Sprite(texture, 0, 48, 16, 18),
-                        new Sprite(texture, 16, 48, 16, 18),
-                        new Sprite(texture, 32, 48, 16, 18),
-                        new Sprite(texture, 48, 48, 16, 18),
-                        new Sprite(texture, 0, 16, 16, 16)
                     }
                     ),
                 new SpriteAnimation(
@@ -191,6 +165,8 @@ namespace RedRidingHood.Entities
     {
         private const float MOVE_INTERVAL = 0.008f;
         Random _random = new Random();
+
+        public int PlayerFloor { get; set; }
 
         public event Action Move;
         public CharacterType Type { get; }
@@ -290,6 +266,26 @@ namespace RedRidingHood.Entities
                         _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     }
                     break;
+            }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (Location.Floor == PlayerFloor)
+            {
+                switch (State)
+                {
+                    case CharacterState.Idle:
+                        _sprites[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
+                        break;
+
+                    case CharacterState.Moving:
+                        _animations[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
+                        break;
+                    case CharacterState.EnterRoom:
+                        _animations[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
+                        break;
+                }
             }
         }
     }

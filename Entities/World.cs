@@ -37,24 +37,13 @@ namespace RedRidingHood.Entities
                     break;
                 case 1:
                     spriteBatch.Draw(_houseTexture, new Vector2(64, 128), new Rectangle(0, 0, 48, 80), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
-
-
-
                     break;
             }
-
         }
 
         public void Update(GameTime gameTime)
         {
-            Cell currentCell = GetCellByLocation(_player.Location);
-            //if (currentCell.Type == CellType.Door)
-            //{
-            //    _player.Location = new Location(_player.Location.Row, _player.Location.Column, 1);
-            //}
 
-            if (currentCell.Type == CellType.DoorOut)
-                _player.Location = new Location(_player.Location.Row, _player.Location.Column, 0);
         }
 
         public Cell GetCellByLocation(Location loc)

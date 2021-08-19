@@ -11,11 +11,15 @@ namespace RedRidingHood.Core
     {
         RedGirl _redGirl;
         World _world;
+        Player _player;
         Random _random = new Random();
 
-        public NPController(World world, RedGirl redGirl)
+        public int CurrentFloor => _player.Location.Floor;
+
+        public NPController(World world, RedGirl redGirl, Player player)
         {
             _world = world;
+            _player = player;
             _redGirl = redGirl;
             _redGirl.Move += OnRedGirlMove;
         }
@@ -30,6 +34,11 @@ namespace RedRidingHood.Core
                 3 => Direction.West
             };
             _redGirl.Commands[0] = new MoveCommand(randomDirection, _world);
+        }
+        
+        public void Update()
+        {
+            _redGirl.PlayerFloor = CurrentFloor;
         }
     }
 }

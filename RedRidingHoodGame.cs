@@ -30,6 +30,7 @@ namespace RedRidingHood
 
         public static int ScreenHeight;
         public static int ScreenWidth;
+        
 
         public RedRidingHoodGame()
         {
@@ -78,7 +79,7 @@ namespace RedRidingHood
             // Load NPCS
             _redGirl = new RedGirl(new Location(9, 3, 0), _primitiveSpriteSheetTexture);
 
-            _npController = new NPController(_world, _redGirl);
+            _npController = new NPController(_world, _redGirl, _player);
 
             _entityManager.Add(_world);
             _entityManager.Add(_player);
@@ -96,6 +97,7 @@ namespace RedRidingHood
             _inputController.ProcessControls(gameTime);
             _entityManager.Update(gameTime);
             _camera.Follow(_player);
+            _npController.Update();
 
 
             base.Update(gameTime);

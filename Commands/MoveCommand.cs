@@ -33,13 +33,16 @@ namespace RedRidingHood.Commands
                 if (World.GetCellByLocation(locationToCome).Type == CellType.Door)
                 {
                     character.TargetLocation = new Location(locationToCome.Row, locationToCome.Column, 1);
-                    character.State = CharacterState.EnterRoom;
+                }
+                else if (World.GetCellByLocation(locationToCome).Type == CellType.DoorOut)
+                {
+                    character.TargetLocation = new Location(locationToCome.Row, locationToCome.Column, 0);
                 }
                 else
                 {
                     character.TargetLocation = locationToCome;
-                    character.State = CharacterState.Moving;
                 }
+                character.State = CharacterState.Moving;
             }
         }
 
@@ -54,7 +57,7 @@ namespace RedRidingHood.Commands
         bool IsInsideMap(Location loc, CharacterType ctype) 
         {
             if (ctype == CharacterType.RedGirl)
-                return loc.Row >= 9 && loc.Row <= 11 && loc.Column >= 1 && loc.Column <= 5;
+                return loc.Row >= 5 && loc.Row <= 11 && loc.Column >= 1 && loc.Column <= 5;
             else
                 return loc.Row >= 1 && loc.Row <= 21 && loc.Column >= 0 && loc.Column <= 19;
         }
