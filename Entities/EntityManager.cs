@@ -29,7 +29,6 @@ namespace RedRidingHood.Entities
             _entitiesToRemove.Clear();
         }
 
-       
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             foreach (IGameEntity entity in _entities)

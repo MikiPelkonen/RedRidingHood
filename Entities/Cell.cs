@@ -9,7 +9,6 @@ namespace RedRidingHood.Entities
         public Location Location { get; }
         public CellType Type { get; }
         public Sprite Sprite { get; }
-
         public float Depth => (float)(Location.Row * 0.01f + 0.015f);
 
 

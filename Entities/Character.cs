@@ -36,8 +36,6 @@ namespace RedRidingHood.Entities
         };
         public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
         public float Depth => (float)(Location.Row * 0.01f);
-
-
         public ICommand[] Commands { get; } = new ICommand[1];
         public Character(Location startLocation, CharacterType ctype)
         {
@@ -100,7 +98,6 @@ namespace RedRidingHood.Entities
                     _animations[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
                     break;
             }
-
         }
     }
 
@@ -166,6 +163,9 @@ namespace RedRidingHood.Entities
     {
         private const float MOVE_INTERVAL = 0.008f;
         Random _random = new Random();
+
+        public event Action Move;
+        public CharacterType Type { get; }
         public RedGirl(Location startLocation, Texture2D texture) : base(startLocation, CharacterType.RedGirl)
         {
             _sprites = new Sprite[]
@@ -220,9 +220,6 @@ namespace RedRidingHood.Entities
                     )
             };
         }
-
-        public event Action Move;
-        public CharacterType Type { get; } = CharacterType.RedGirl;
 
         public override void Update(GameTime gameTime)
         {
