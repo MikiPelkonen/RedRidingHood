@@ -69,6 +69,9 @@ namespace RedRidingHood.Commands
 
             if (targetCell.Type == CellType.Tree && direction == Direction.North) return false;
             if (currentCell.Type == CellType.Tree && direction == Direction.South) return false;
+            if (targetCell.Type == CellType.Bed && direction == Direction.North) return false;
+            if (currentCell.Type == CellType.Bed && direction == Direction.South) return false;
+            if (currentCell.Type == CellType.Bed && targetCell.Type == CellType.Empty) return false;
             if (targetCell.Type == CellType.Lodge) return false;
             if (currentCell.Type == CellType.Floor && targetCell.Type == CellType.Empty) return false;
 

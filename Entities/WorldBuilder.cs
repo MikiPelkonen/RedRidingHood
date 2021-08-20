@@ -37,7 +37,8 @@ namespace RedRidingHood.Entities
             cells[9, 3, 1] = new Cell(new Location(9, 3, 1), CellType.DoorOut);
             cells[6, 2, 1] = new Cell(new Location(6, 2, 1), CellType.Floor);
             cells[6, 3, 1] = new Cell(new Location(6, 3, 1), CellType.Floor);
-            cells[6, 4, 1] = new Cell(new Location(6, 4, 1), CellType.Floor);
+            cells[6, 4, 1] = new Cell(new Location(6, 4, 1), CellType.Bed);
+            cells[5, 4, 1] = new Cell(new Location(5, 4, 1), CellType.Blanket, new Sprite(spriteSheet, 48, 128, 16, 32));
             cells[7, 2, 1] = new Cell(new Location(7, 2, 1), CellType.Floor);
             cells[7, 3, 1] = new Cell(new Location(7, 3, 1), CellType.Floor);
             cells[7, 4, 1] = new Cell(new Location(7, 4, 1), CellType.Floor);

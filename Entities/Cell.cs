@@ -40,6 +40,8 @@ namespace RedRidingHood.Entities
             }
             if (Type == CellType.Roof)
                 depth += 0.2f;
+            if (Type == CellType.Blanket)
+                depth += 0.005f;
 
             Sprite.Draw(spriteBatch, Location + offset, depth);
         }

@@ -31,12 +31,13 @@ namespace RedRidingHood.Entities
                     spriteBatch.Draw(_worldTexture, Vector2.Zero, new Rectangle(0, 0, 320, 352), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
                     foreach (Cell c in _world)
                     {
-                        if (c.Sprite != null)
+                        if (c.Sprite != null && c.Type != CellType.Blanket)
                             c.Draw(spriteBatch);
                     }
                     break;
                 case 1:
                     spriteBatch.Draw(_houseTexture, new Vector2(64, 128), new Rectangle(0, 0, 48, 80), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
+                    _world[5, 4, 1].Draw(spriteBatch);
                     break;
             }
         }

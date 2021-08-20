@@ -37,6 +37,18 @@
 /processorParam:TextureFormat=Color
 /build:Primitives/InsideHouseFurniture.png
 
+#begin Primitives/InsideHouseFurnitureTwo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Primitives/InsideHouseFurnitureTwo.png
+
 #begin Primitives/PrimitiveSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -72,6 +84,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Primitives/PrimitiveSpriteSheetFour.png
+
+#begin Primitives/PrimitiveSpriteSheetSeven.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Primitives/PrimitiveSpriteSheetSeven.png
+
+#begin Primitives/PrimitiveSpriteSheetSix.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Primitives/PrimitiveSpriteSheetSix.png
 
 #begin Primitives/PrimitiveSpriteSheetTwo.png
 /importer:TextureImporter
