@@ -124,7 +124,7 @@ namespace RedRidingHood.Entities
                         new Sprite(texture, 16, 67, 16, 18),
                         new Sprite(texture, 32, 67, 16, 18),
                         new Sprite(texture, 48, 67, 16, 18),
-                        new Sprite(texture, 0, 16, 16, 16),
+                        new Sprite(texture, 48, 67, 16, 18)
                     }
                     ),
                 new SpriteAnimation(
@@ -134,7 +134,7 @@ namespace RedRidingHood.Entities
                         new Sprite(texture, 16, 48, 16, 18),
                         new Sprite(texture, 32, 48, 16, 18),
                         new Sprite(texture, 48, 48, 16, 18),
-                        new Sprite(texture, 0, 16, 16, 16),
+                        new Sprite(texture, 48, 48, 16, 18)
                     }
                     ),
                 new SpriteAnimation(
@@ -144,7 +144,7 @@ namespace RedRidingHood.Entities
                         new Sprite(texture, 16, 86, 16, 18),
                         new Sprite(texture, 32, 86, 16, 18),
                         new Sprite(texture, 48, 86, 16, 18),
-                        new Sprite(texture, 0, 16, 16, 16),
+                        new Sprite(texture, 48, 86, 16, 18)
                     }
                     ),
                 new SpriteAnimation(
@@ -154,7 +154,7 @@ namespace RedRidingHood.Entities
                         new Sprite(texture, 16, 104, 16, 18),
                         new Sprite(texture, 32, 104, 16, 18),
                         new Sprite(texture, 48, 104, 16, 18),
-                        new Sprite(texture, 0, 104, 16, 16),
+                        new Sprite(texture, 48, 104, 16, 18)
                     }
                     )
             };
@@ -189,7 +189,7 @@ namespace RedRidingHood.Entities
                         new Sprite(texture, 16, 67, 16, 18),
                         new Sprite(texture, 32, 67, 16, 18),
                         new Sprite(texture, 48, 67, 16, 18),
-                        new Sprite(texture, 0, 16, 16, 16),
+                        new Sprite(texture, 48, 67, 16, 18)
                     }
                     ),
                 new SpriteAnimation(
@@ -199,7 +199,7 @@ namespace RedRidingHood.Entities
                         new Sprite(texture, 16, 48, 16, 18),
                         new Sprite(texture, 32, 48, 16, 18),
                         new Sprite(texture, 48, 48, 16, 18),
-                        new Sprite(texture, 0, 16, 16, 16),
+                        new Sprite(texture, 48, 48, 16, 18)
                     }
                     ),
                 new SpriteAnimation(
@@ -209,7 +209,7 @@ namespace RedRidingHood.Entities
                         new Sprite(texture, 16, 86, 16, 18),
                         new Sprite(texture, 32, 86, 16, 18),
                         new Sprite(texture, 48, 86, 16, 18),
-                        new Sprite(texture, 0, 16, 16, 16),
+                        new Sprite(texture, 48, 86, 16, 18)
                     }
                     ),
                 new SpriteAnimation(
@@ -219,7 +219,7 @@ namespace RedRidingHood.Entities
                         new Sprite(texture, 16, 104, 16, 18),
                         new Sprite(texture, 32, 104, 16, 18),
                         new Sprite(texture, 48, 104, 16, 18),
-                        new Sprite(texture, 0, 104, 16, 16),
+                        new Sprite(texture, 48, 104, 16, 18)
                     }
                     )
             };

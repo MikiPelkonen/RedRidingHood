@@ -66,9 +66,9 @@ namespace RedRidingHood
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheetFour");
+            _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheetFive");
             _worldSheet = Content.Load<Texture2D>("Primitives/WorldHouseless");
-            _houseInside = Content.Load<Texture2D>("Primitives/InsideHouse");
+            _houseInside = Content.Load<Texture2D>("Primitives/InsideHouseFurniture");
 
             _player = new Player(new Location(10, 10, 0), _primitiveSpriteSheetTexture);
             _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture, _worldSheet, _houseInside, _player);
