@@ -19,6 +19,7 @@ namespace RedRidingHood.Entities
 
         protected SpriteAnimation[] _animations;
         protected Sprite[] _sprites;
+
         
         public Location Location { get; set; }
         public Location TargetLocation { get; set; }
@@ -68,9 +69,7 @@ namespace RedRidingHood.Entities
                     break;
 
                 case CharacterState.Dialogue:
-                    if (_timeElapsed >= 5f)
-                        State = CharacterState.Idle;
-                    _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    
                     break;
             }
         }
@@ -178,6 +177,8 @@ namespace RedRidingHood.Entities
         public int PlayerFloor { get; set; }
 
         public event Action Move;
+        public event Action DialogueOver;
+        public event Action DialogueStart;
         public RedGirl(Location startLocation, Texture2D texture) : base(startLocation)
         {
             _sprites = new Sprite[]
@@ -262,9 +263,12 @@ namespace RedRidingHood.Entities
                     break;
 
                 case CharacterState.Dialogue:
-                    if (_timeElapsed >= 5f)
-                        State = CharacterState.Idle;
-                    _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    DialogueStart?.Invoke();
+
+
+                    //if (_timeElapsed >= 5f)
+                    //    DialogueOver?.Invoke();
+                    //_timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     break;
             }
         }

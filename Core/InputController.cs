@@ -50,7 +50,6 @@ namespace RedRidingHood.Core
                         Direction.East  => new Location(0, 1, 0),
                         Direction.West  => new Location(0, -1, 0)
                     };
-
                     Character target = _entityManager.CharacterByLocation(scoutLocation);
 
                     if (target != null)

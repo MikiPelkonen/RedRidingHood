@@ -22,6 +22,7 @@ namespace RedRidingHood.Core
             _player = player;
             _redGirl = redGirl;
             _redGirl.Move += OnRedGirlMove;
+            _redGirl.DialogueOver += OnRedGirlDialogueOver;
         }
 
         private void OnRedGirlMove()
@@ -34,6 +35,12 @@ namespace RedRidingHood.Core
                 3 => Direction.West
             };
             _redGirl.Commands[0] = new MoveCommand(randomDirection, _world);
+        }
+
+        private void OnRedGirlDialogueOver()
+        {
+            _player.State = CharacterState.Idle;
+            _redGirl.State = CharacterState.Idle;
         }
         
         public void Update()

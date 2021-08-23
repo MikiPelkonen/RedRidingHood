@@ -22,11 +22,15 @@ namespace RedRidingHood
         NPController _npController;
         Camera _camera;
 
+        // Fonts
+        SpriteFont _testFont;
+
         // Entities
         EntityManager _entityManager;
         World _world;
         Player _player;
         RedGirl _redGirl;
+        DialogueBoard _dialogueBoard;
 
         public static int ScreenHeight;
         public static int ScreenWidth;
@@ -70,6 +74,8 @@ namespace RedRidingHood
             _worldSheet = Content.Load<Texture2D>("Primitives/WorldHouseless");
             _houseInside = Content.Load<Texture2D>("Primitives/InsideHouseFurnitureTwo");
 
+            _testFont = Content.Load<SpriteFont>("TestFont");
+
             // Load Characters
             _player = new Player(new Location(10, 10, 0), _primitiveSpriteSheetTexture);
             _redGirl = new RedGirl(new Location(9, 3, 0), _primitiveSpriteSheetTexture);
@@ -79,13 +85,14 @@ namespace RedRidingHood
             _inputController = new InputController(_player, _world, _entityManager);
             _camera = new Camera();
 
-            
-
             _npController = new NPController(_world, _redGirl, _player);
+
+            _dialogueBoard = new DialogueBoard(_player, _redGirl, _primitiveSpriteSheetTexture, _testFont);
 
             _entityManager.Add(_world);
             _entityManager.Add(_player);
             _entityManager.Add(_redGirl);
+            _entityManager.Add(_dialogueBoard);
             
         }
 

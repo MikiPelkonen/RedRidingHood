@@ -157,3 +157,10 @@
 /processorParam:TextureFormat=Color
 /build:Primitives/WorldProgress.png
 
+#begin TestFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:TestFont.spritefont
+

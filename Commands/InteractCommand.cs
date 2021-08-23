@@ -20,7 +20,6 @@ namespace RedRidingHood.Commands
             _target.State = CharacterState.Dialogue;
             character.State = CharacterState.Dialogue;
             ChangeTargetDir(character);
-
         }
 
         void ChangeTargetDir(Character character)
