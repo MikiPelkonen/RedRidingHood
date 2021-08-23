@@ -70,14 +70,16 @@ namespace RedRidingHood
             _worldSheet = Content.Load<Texture2D>("Primitives/WorldHouseless");
             _houseInside = Content.Load<Texture2D>("Primitives/InsideHouseFurnitureTwo");
 
+            // Load Characters
             _player = new Player(new Location(10, 10, 0), _primitiveSpriteSheetTexture);
-            _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture, _worldSheet, _houseInside, _player);
+            _redGirl = new RedGirl(new Location(9, 3, 0), _primitiveSpriteSheetTexture);
+
+            _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture, _worldSheet, _houseInside, _player, _entityManager);
             
             _inputController = new InputController(_player, _world);
             _camera = new Camera();
 
-            // Load NPCS
-            _redGirl = new RedGirl(new Location(9, 3, 0), _primitiveSpriteSheetTexture);
+            
 
             _npController = new NPController(_world, _redGirl, _player);
 

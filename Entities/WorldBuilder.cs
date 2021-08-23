@@ -5,11 +5,9 @@ namespace RedRidingHood.Entities
 {
     public class WorldBuilder
     {
-        public World CreateWorld(Texture2D spriteSheet, Texture2D world, Texture2D house, Player player)
+        public World CreateWorld(Texture2D spriteSheet, Texture2D world, Texture2D house, Player player, EntityManager entityManager)
         {
             Cell[,,] cells = new Cell[25, 22, 2];
-
-            
 
             for (int row = 0; row < cells.GetLength(0); row++)
             {
@@ -85,9 +83,8 @@ namespace RedRidingHood.Entities
             cells[18, 19, 0] = new Cell(new Location(18, 19, 0), CellType.Tree, Two);
 
 
-            // TODO: Figure out why row 7 bugged... Solved with right values in tree locations X_x.
 
-            return new World(cells, world, house, player);
+            return new World(cells, world, house, player, entityManager);
         }
     }
 }

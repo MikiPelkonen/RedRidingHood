@@ -17,6 +17,15 @@ namespace RedRidingHood.Entities
 
         public static implicit operator Vector2(Location loc) => new Vector2(loc.Column * 32, loc.Row * 32);
 
+        public static bool operator ==(Location one, Location two)
+        {
+            return (one.Row == two.Row && one.Column == two.Column && one.Floor == two.Floor);
+        }
+        public static bool operator !=(Location one, Location two)
+        {
+            return !(one.Row == two.Row && one.Column == two.Column && one.Floor == two.Floor);
+        }
+
         public override string ToString()
         {
             return $"Row: {Row}\nColumn: {Column}\nFloor: {Floor}";

@@ -48,11 +48,18 @@ namespace RedRidingHood.Commands
 
         bool IsLegalMove(Location loc, Direction direction, Character character)
         {
-            if (IsInsideMap(loc, character) && IsLegalCell(loc, character.StartLocation, direction))
+            if (IsInsideMap(loc, character) && IsLegalCell(loc, character.StartLocation, direction) && !HasCharacter(loc))
                 return true;
             return false;
         }
 
+        bool HasCharacter(Location loc)
+        {
+            foreach (Location location in World.CharLocations)
+                if (location == loc) return true;
+
+            return false;
+        }
 
         bool IsInsideMap(Location loc, Character character) 
         {
@@ -72,10 +79,12 @@ namespace RedRidingHood.Commands
             if (targetCell.Type == CellType.Bed && direction == Direction.North) return false;
             if (currentCell.Type == CellType.Bed && direction == Direction.South) return false;
             if (currentCell.Type == CellType.Bed && targetCell.Type == CellType.Empty) return false;
+            if (currentCell.Type == CellType.Bed && targetCell.Type == CellType.Blanket) return false;
             if (targetCell.Type == CellType.Lodge) return false;
             if (currentCell.Type == CellType.Floor && targetCell.Type == CellType.Empty) return false;
 
             return true;
         }
+
     }
 }

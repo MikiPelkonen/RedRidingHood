@@ -10,7 +10,7 @@ namespace RedRidingHood.Core
 {
     public class InputController
     {
-        KeyboardState keyboardState, lastKeyboardState;
+        KeyboardState keyboardState;
         Player _player;
         World _world;
 
@@ -37,7 +37,5 @@ namespace RedRidingHood.Core
                     _player.Commands[0] = new MoveCommand(Direction.East, _world);
             }
         }
-
-
     }
 }
