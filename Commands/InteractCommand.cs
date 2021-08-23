@@ -8,47 +8,42 @@ namespace RedRidingHood.Commands
     public class InteractCommand : ICommand
     {
         private Character _target;
+        private Location _scoutLocation;
 
-        public InteractCommand(Character target)
+        public InteractCommand(Character target, Location scoutLocation)
         {
             _target = target;
+            _scoutLocation = scoutLocation;
         }
         public void Run(Character character)
         {
-            if (IsInFrontOf(character))
-            {
-                _target.State = CharacterState.Dialogue;
-                character.State = CharacterState.Dialogue;
-            }
+            _target.State = CharacterState.Dialogue;
+            character.State = CharacterState.Dialogue;
+            ChangeTargetDir(character);
+
         }
 
-        bool IsInFrontOf(Character character)
+        void ChangeTargetDir(Character character)
         {
-            if (character.Direction == Direction.North && _target.Location == new Location(character.Location.Row - 1, character.Location.Column, character.Location.Floor))
+            if (character.Direction == Direction.North && _target.Location == _scoutLocation)
             {
                 _target.Direction = Direction.South;
-                return true;
             }
 
-            if (character.Direction == Direction.South && _target.Location == new Location(character.Location.Row + 1, character.Location.Column, character.Location.Floor))
+            if (character.Direction == Direction.South && _target.Location == _scoutLocation)
             {
                 _target.Direction = Direction.North;
-                return true;
             }
 
-            if (character.Direction == Direction.East && _target.Location == new Location(character.Location.Row, character.Location.Column + 1, character.Location.Floor))
+            if (character.Direction == Direction.East && _target.Location == _scoutLocation)
             {
                 _target.Direction = Direction.West;
-                return true;
             }
 
-            if (character.Direction == Direction.West && _target.Location == new Location(character.Location.Row, character.Location.Column - 1, character.Location.Floor))
+            if (character.Direction == Direction.West && _target.Location == _scoutLocation)
             {
                 _target.Direction = Direction.East;
-                return true;
             }
-
-            return false;
         }
     }
 }

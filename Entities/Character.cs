@@ -68,7 +68,7 @@ namespace RedRidingHood.Entities
                     break;
 
                 case CharacterState.Dialogue:
-                    if (_timeElapsed >= 10f)
+                    if (_timeElapsed >= 5f)
                         State = CharacterState.Idle;
                     _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     break;
@@ -262,7 +262,7 @@ namespace RedRidingHood.Entities
                     break;
 
                 case CharacterState.Dialogue:
-                    if (_timeElapsed >= 10f)
+                    if (_timeElapsed >= 5f)
                         State = CharacterState.Idle;
                     _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     break;

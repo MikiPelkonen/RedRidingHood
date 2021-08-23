@@ -5,6 +5,7 @@ using RedRidingHood.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace RedRidingHood.Core
 {
@@ -28,7 +29,7 @@ namespace RedRidingHood.Core
             
             if (_player.State == CharacterState.Idle)
             {
-                //Basic Movement commands
+                // Basic Movement commands
                 if (keyboardState.IsKeyDown(Keys.S))
                     _player.Commands[0] = new MoveCommand(Direction.South, _world);
                 else if (keyboardState.IsKeyDown(Keys.W))
@@ -38,16 +39,24 @@ namespace RedRidingHood.Core
                 else if (keyboardState.IsKeyDown(Keys.D))
                     _player.Commands[0] = new MoveCommand(Direction.East, _world);
 
+
+                // Interact command
                 if (keyboardState.IsKeyDown(Keys.E))
                 {
-                    Character targetChar = null;
-                    foreach (Character character in _entityManager.GetEntitiesOfType<Character>())
+                    Location scoutLocation = _player.Location + _player.Direction switch
                     {
-                        if (character is RedGirl)
-                            targetChar = character;
-                    }
+                        Direction.North => new Location(-1, 0, 0),
+                        Direction.South => new Location(1, 0, 0),
+                        Direction.East  => new Location(0, 1, 0),
+                        Direction.West  => new Location(0, -1, 0)
+                    };
 
-                    _player.Commands[0] = new InteractCommand(targetChar);
+                    Character target = _entityManager.CharacterByLocation(scoutLocation);
+
+                    if (target != null)
+                    {
+                        _player.Commands[0] = new InteractCommand(target, scoutLocation);
+                    }
                 }
             }
         }

@@ -64,5 +64,22 @@ namespace RedRidingHood.Entities
             return _entities.OfType<T>();
         }
 
+        public Character CharacterByLocation(Location loc)
+        {
+            var targetChars = from c in GetEntitiesOfType<Character>()
+                              where c.Location == loc
+                              select c;
+
+            List<Character> charList = new List<Character>();
+
+            foreach (Character c in targetChars)
+                charList.Add(c);
+
+            if (charList.Count > 0)
+                return charList[0];
+
+            return null;
+        }
+
     }
 }
