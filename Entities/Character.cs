@@ -66,6 +66,12 @@ namespace RedRidingHood.Entities
 
                     MoveLerp(gameTime);
                     break;
+
+                case CharacterState.Dialogue:
+                    if (_timeElapsed >= 10f)
+                        State = CharacterState.Idle;
+                    _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    break;
             }
         }
 
@@ -80,6 +86,9 @@ namespace RedRidingHood.Entities
 
                 case CharacterState.Moving:
                     _animations[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
+                    break;
+                case CharacterState.Dialogue:
+                    _sprites[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
                     break;
             }
         }
@@ -252,6 +261,11 @@ namespace RedRidingHood.Entities
                     MoveLerp(gameTime);
                     break;
 
+                case CharacterState.Dialogue:
+                    if (_timeElapsed >= 10f)
+                        State = CharacterState.Idle;
+                    _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    break;
             }
         }
 
@@ -268,11 +282,15 @@ namespace RedRidingHood.Entities
                     case CharacterState.Moving:
                         _animations[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
                         break;
+
+                    case CharacterState.Dialogue:
+                        _sprites[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
+                        break;
                 }
             }
         }
     }
 
-    public enum CharacterState { Idle, Moving, Dead }
+    public enum CharacterState { Idle, Moving, Dialogue, Dead }
     public enum Direction { North, South, East, West }
 }

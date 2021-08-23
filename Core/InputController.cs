@@ -13,11 +13,13 @@ namespace RedRidingHood.Core
         KeyboardState keyboardState;
         Player _player;
         World _world;
+        EntityManager _entityManager;
 
-        public InputController(Player player, World world)
+        public InputController(Player player, World world, EntityManager entityManager)
         {
             _player = player;
             _world = world;
+            _entityManager = entityManager;
         }
 
         public void ProcessControls(GameTime gameTime)
@@ -35,6 +37,18 @@ namespace RedRidingHood.Core
                     _player.Commands[0] = new MoveCommand(Direction.West, _world);
                 else if (keyboardState.IsKeyDown(Keys.D))
                     _player.Commands[0] = new MoveCommand(Direction.East, _world);
+
+                if (keyboardState.IsKeyDown(Keys.E))
+                {
+                    Character targetChar = null;
+                    foreach (Character character in _entityManager.GetEntitiesOfType<Character>())
+                    {
+                        if (character is RedGirl)
+                            targetChar = character;
+                    }
+
+                    _player.Commands[0] = new InteractCommand(targetChar);
+                }
             }
         }
     }

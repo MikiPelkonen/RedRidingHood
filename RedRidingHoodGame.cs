@@ -76,7 +76,7 @@ namespace RedRidingHood
 
             _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture, _worldSheet, _houseInside, _player, _entityManager);
             
-            _inputController = new InputController(_player, _world);
+            _inputController = new InputController(_player, _world, _entityManager);
             _camera = new Camera();
 
             
