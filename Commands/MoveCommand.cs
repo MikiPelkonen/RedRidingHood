@@ -21,8 +21,8 @@ namespace RedRidingHood.Commands
             {
                 Direction.North => new Location(character.Location.Row - 1, character.Location.Column, character.Location.Floor),
                 Direction.South => new Location(character.Location.Row + 1, character.Location.Column, character.Location.Floor),
-                Direction.East => new Location(character.Location.Row, character.Location.Column + 1, character.Location.Floor),
-                Direction.West => new Location(character.Location.Row, character.Location.Column - 1, character.Location.Floor)
+                Direction.East  => new Location(character.Location.Row, character.Location.Column + 1, character.Location.Floor),
+                Direction.West  => new Location(character.Location.Row, character.Location.Column - 1, character.Location.Floor)
             };
 
             character.Direction = Direction;

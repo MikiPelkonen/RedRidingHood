@@ -20,7 +20,6 @@ namespace RedRidingHood.Entities
         protected SpriteAnimation[] _animations;
         protected Sprite[] _sprites;
 
-        
         public Location Location { get; set; }
         public Location TargetLocation { get; set; }
         public Location StartLocation { get; set; }
@@ -263,13 +262,10 @@ namespace RedRidingHood.Entities
                     break;
 
                 case CharacterState.Dialogue:
+
                     DialogueStart?.Invoke();
-
-
-                    //if (_timeElapsed >= 5f)
-                    //    DialogueOver?.Invoke();
-                    //_timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     break;
+
             }
         }
 
