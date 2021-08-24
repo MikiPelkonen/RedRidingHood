@@ -116,10 +116,10 @@ namespace RedRidingHood.Entities
         {
             _sprites = new Sprite[]
             {
-                new Sprite(texture, 16, 67, 16, 18),
-                new Sprite(texture, 16, 48, 16, 18),
-                new Sprite(texture, 16, 86, 16, 18),
-                new Sprite(texture, 16, 104, 16, 18)
+                new Sprite(texture, 96, 0, 16, 18),
+                new Sprite(texture, 96, 18, 16, 18),
+                new Sprite(texture, 96, 54, 16, 18),
+                new Sprite(texture, 96, 36, 16, 18)
             };
 
             _animations = new SpriteAnimation[] 
@@ -127,41 +127,41 @@ namespace RedRidingHood.Entities
                 new SpriteAnimation(
                     new Sprite[]
                     {
-                        new Sprite(texture, 0, 67, 16, 18),
-                        new Sprite(texture, 16, 67, 16, 18),
-                        new Sprite(texture, 32, 67, 16, 18),
-                        new Sprite(texture, 48, 67, 16, 18),
-                        new Sprite(texture, 48, 67, 16, 18)
+                        new Sprite(texture, 80, 0, 16, 18),
+                        new Sprite(texture, 96, 0, 16, 18),
+                        new Sprite(texture, 112, 0, 16, 18),
+                        new Sprite(texture, 128, 0, 16, 18),
+                        new Sprite(texture, 128, 0, 16, 18)
                     }
                     ),
                 new SpriteAnimation(
                     new Sprite[]
                     {
-                        new Sprite(texture, 0, 48, 16, 18),
-                        new Sprite(texture, 16, 48, 16, 18),
-                        new Sprite(texture, 32, 48, 16, 18),
-                        new Sprite(texture, 48, 48, 16, 18),
-                        new Sprite(texture, 48, 48, 16, 18)
+                        new Sprite(texture, 80, 18, 16, 18),
+                        new Sprite(texture, 96, 18, 16, 18),
+                        new Sprite(texture, 112, 18, 16, 18),
+                        new Sprite(texture, 128, 18, 16, 18),
+                        new Sprite(texture, 128, 18, 16, 18)
                     }
                     ),
                 new SpriteAnimation(
                     new Sprite[]
                     {
-                        new Sprite(texture, 0, 86, 16, 18),
-                        new Sprite(texture, 16, 86, 16, 18),
-                        new Sprite(texture, 32, 86, 16, 18),
-                        new Sprite(texture, 48, 86, 16, 18),
-                        new Sprite(texture, 48, 86, 16, 18)
+                        new Sprite(texture, 80, 54, 16, 18),
+                        new Sprite(texture, 96, 54, 16, 18),
+                        new Sprite(texture, 112, 54, 16, 18),
+                        new Sprite(texture, 128, 54, 16, 18),
+                        new Sprite(texture, 128, 54, 16, 18)
                     }
                     ),
                 new SpriteAnimation(
                     new Sprite[]
                     {
-                        new Sprite(texture, 0, 104, 16, 18),
-                        new Sprite(texture, 16, 104, 16, 18),
-                        new Sprite(texture, 32, 104, 16, 18),
-                        new Sprite(texture, 48, 104, 16, 18),
-                        new Sprite(texture, 48, 104, 16, 18)
+                        new Sprite(texture, 80, 36, 16, 18),
+                        new Sprite(texture, 96, 36, 16, 18),
+                        new Sprite(texture, 112, 36, 16, 18),
+                        new Sprite(texture, 128, 36, 16, 18),
+                        new Sprite(texture, 128, 36, 16, 18)
                     }
                     )
             };

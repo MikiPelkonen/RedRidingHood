@@ -41,7 +41,7 @@ namespace RedRidingHood.Entities
                 case DialogueType.RedGirlNormal:
                     string renderText = kue switch
                     {
-                        0   =>  "Hello there Mister!\nIt's a lovely day...",
+                        0   =>  "Hello there Mister!\nSuch a lovely day...",
                         1   =>  "Will you help me\nwith a simple task?",
                         2   =>  "My grandma is\n starving...",
                         3   =>  "Would you go and\n hunt for me?",
