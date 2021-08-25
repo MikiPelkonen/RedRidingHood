@@ -73,6 +73,18 @@
 /processorParam:TextureFormat=Color
 /build:Primitives/PrimitiveSpriteSheetEight.png
 
+#begin Primitives/PrimitiveSpriteSheetEleven.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Primitives/PrimitiveSpriteSheetEleven.png
+
 #begin Primitives/PrimitiveSpriteSheetFive.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -144,6 +156,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Primitives/PrimitiveSpriteSheetTen.png
+
+#begin Primitives/PrimitiveSpriteSheetTwelve.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Primitives/PrimitiveSpriteSheetTwelve.png
 
 #begin Primitives/PrimitiveSpriteSheetTwo.png
 /importer:TextureImporter

@@ -85,6 +85,7 @@ namespace RedRidingHood.Entities
                 case CharacterState.Moving:
                     _animations[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
                     break;
+
                 case CharacterState.Dialogue:
                     _sprites[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
                     break;
@@ -182,10 +183,10 @@ namespace RedRidingHood.Entities
         {
             _sprites = new Sprite[]
             {
-                new Sprite(texture, 16, 67, 16, 18),
-                new Sprite(texture, 16, 48, 16, 18),
-                new Sprite(texture, 16, 86, 16, 18),
-                new Sprite(texture, 16, 104, 16, 18)
+                new Sprite(texture, 96, 80, 16, 18),
+                new Sprite(texture, 96, 98, 16, 18),
+                new Sprite(texture, 96, 134, 16, 18),
+                new Sprite(texture, 96, 116, 16, 18)
             };
 
             _animations = new SpriteAnimation[]
@@ -193,41 +194,41 @@ namespace RedRidingHood.Entities
                 new SpriteAnimation(
                     new Sprite[]
                     {
-                        new Sprite(texture, 0, 67, 16, 18),
-                        new Sprite(texture, 16, 67, 16, 18),
-                        new Sprite(texture, 32, 67, 16, 18),
-                        new Sprite(texture, 48, 67, 16, 18),
-                        new Sprite(texture, 48, 67, 16, 18)
+                        new Sprite(texture, 80, 80, 16, 18),
+                        new Sprite(texture, 96, 80, 16, 18),
+                        new Sprite(texture, 112, 80, 16, 18),
+                        new Sprite(texture, 128, 80, 16, 18),
+                        new Sprite(texture, 128, 80, 16, 18)
                     }
                     ),
                 new SpriteAnimation(
                     new Sprite[]
                     {
-                        new Sprite(texture, 0, 48, 16, 18),
-                        new Sprite(texture, 16, 48, 16, 18),
-                        new Sprite(texture, 32, 48, 16, 18),
-                        new Sprite(texture, 48, 48, 16, 18),
-                        new Sprite(texture, 48, 48, 16, 18)
+                        new Sprite(texture, 80, 98, 16, 18),
+                        new Sprite(texture, 96, 98, 16, 18),
+                        new Sprite(texture, 112, 98, 16, 18),
+                        new Sprite(texture, 128, 98, 16, 18),
+                        new Sprite(texture, 128, 98, 16, 18)
                     }
                     ),
                 new SpriteAnimation(
                     new Sprite[]
                     {
-                        new Sprite(texture, 0, 86, 16, 18),
-                        new Sprite(texture, 16, 86, 16, 18),
-                        new Sprite(texture, 32, 86, 16, 18),
-                        new Sprite(texture, 48, 86, 16, 18),
-                        new Sprite(texture, 48, 86, 16, 18)
+                        new Sprite(texture, 80, 134, 16, 18),
+                        new Sprite(texture, 96, 134, 16, 18),
+                        new Sprite(texture, 112, 134, 16, 18),
+                        new Sprite(texture, 128, 134, 16, 18),
+                        new Sprite(texture, 128, 134, 16, 18)
                     }
                     ),
                 new SpriteAnimation(
                     new Sprite[]
                     {
-                        new Sprite(texture, 0, 104, 16, 18),
-                        new Sprite(texture, 16, 104, 16, 18),
-                        new Sprite(texture, 32, 104, 16, 18),
-                        new Sprite(texture, 48, 104, 16, 18),
-                        new Sprite(texture, 48, 104, 16, 18)
+                        new Sprite(texture, 80, 116, 16, 18),
+                        new Sprite(texture, 96, 116, 16, 18),
+                        new Sprite(texture, 112, 116, 16, 18),
+                        new Sprite(texture, 128, 116, 16, 18),
+                        new Sprite(texture, 128, 116, 16, 18)
                     }
                     )
             };
