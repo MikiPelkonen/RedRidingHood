@@ -6,11 +6,13 @@ namespace RedRidingHood.Entities
 {
     public class Player : Character
     {
+        private Texture2D _texture;
         public Inventory Inventory { get; set; }
         public int MaxHp { get; } = 5;
         public int CurrentHp { get; set; } = 5;
         public Player(Location startLocation, Texture2D texture) : base(startLocation)
         {
+            _texture = texture;
             Inventory = new Inventory();
             _sprites = new Sprite[]
             {
@@ -63,6 +65,11 @@ namespace RedRidingHood.Entities
                     }
                     )
             };
+        }
+
+        public void Shoot(EntityManager entityManager)
+        {
+            entityManager.Add(new Bullet(new Sprite(_texture, 148, 14, 3, 2), entityManager, Position, Depth));
         }
     }
 

@@ -17,6 +17,7 @@ namespace RedRidingHood.Core
         EntityManager _entityManager;
 
         public event Action ToggleBackbag;
+        public event Action Shoot;
 
         public InputController(Player player, World world, EntityManager entityManager)
         {
@@ -34,6 +35,11 @@ namespace RedRidingHood.Core
             if (keyboardState.IsKeyDown(Keys.B) && !lastKeyboardState.IsKeyDown(Keys.B))
             {
                 ToggleBackbag?.Invoke();
+            }
+
+            if (keyboardState.IsKeyDown(Keys.Left) && !lastKeyboardState.IsKeyDown(Keys.Left))
+            {
+                _player.Shoot(_entityManager);
             }
 
             if (_player.State == CharacterState.Idle)
