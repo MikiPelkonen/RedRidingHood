@@ -29,5 +29,9 @@ namespace RedRidingHood.Graphics
         {
             spriteBatch.Draw(Texture, position, new Rectangle(X, Y, Width, Height), TintColor, 0f, Vector2.Zero, 2f, SpriteEffects.None, depth);
         }
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, float depth, float scale)
+        {
+            spriteBatch.Draw(Texture, position, new Rectangle(X, Y, Width, Height), TintColor, 0f, Vector2.Zero, scale, SpriteEffects.None, depth);
+        }
     }
 }

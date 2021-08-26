@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace RedRidingHood.Core
 {
@@ -40,6 +41,7 @@ namespace RedRidingHood.Core
             if (keyboardState.IsKeyDown(Keys.Left) && !lastKeyboardState.IsKeyDown(Keys.Left))
             {
                 _player.Shoot(_entityManager);
+                Shoot?.Invoke();
             }
 
             if (_player.State == CharacterState.Idle)
