@@ -15,10 +15,7 @@ namespace RedRidingHood.UI
         private InputController _inputController;
         private HpBar _hpBar;
         private Backbag _backBag;
-
-
         private bool _toggleBackbag;
-        private KeyboardState keyboardState, lastKeyboardState;
 
         public UserInterface(Player player, InputController inputController, Texture2D hptext, Texture2D backbagtext)
         {
@@ -89,12 +86,13 @@ namespace RedRidingHood.UI
                 else
                     sourceRect = new Rectangle(80, 0, 16, 16);
 
-                spriteBatch.Draw(_backbagSheet, new Vector2(Position.X + 26 + (38 * i), Position.Y + 28), sourceRect, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
+
+                if (i < 3)
+                    spriteBatch.Draw(_backbagSheet, new Vector2(Position.X + 26 + (38 * i), Position.Y + 28), sourceRect, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
+                else
+                    spriteBatch.Draw(_backbagSheet, new Vector2(Position.X + 26 + (38 * (i - 3)), Position.Y + 66), sourceRect, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
 
             }
-
-
-
         }
 
         public override void Update(GameTime gameTime, Player player)

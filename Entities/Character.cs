@@ -111,6 +111,126 @@ namespace RedRidingHood.Entities
         }
     }
 
+    public class Furry : Character
+    {
+        private const float MOVE_INTERVAL = 0.008f;
+        Random _random = new Random();
+        public int PlayerFloor { get; set; }
+
+        public event Action Move;
+        public Furry(Location startLocation, Texture2D texture) : base(startLocation)
+        {
+            _sprites = new Sprite[]
+            {
+                new Sprite(texture, 160, 0, 16, 18),
+                new Sprite(texture, 160, 18, 16, 18),
+                new Sprite(texture, 160, 54, 16, 18),
+                new Sprite(texture, 160, 36, 16, 18)
+            };
+
+            _animations = new SpriteAnimation[]
+            {
+                new SpriteAnimation(
+                    new Sprite[]
+                    {
+                        new Sprite(texture, 144, 0, 16, 18),
+                        new Sprite(texture, 160, 0, 16, 18),
+                        new Sprite(texture, 176, 0, 16, 18),
+                        new Sprite(texture, 192, 0, 16, 18),
+                        new Sprite(texture, 192, 0, 16, 18)
+                    }
+                    ),
+                new SpriteAnimation(
+                    new Sprite[]
+                    {
+                        new Sprite(texture, 144, 18, 16, 18),
+                        new Sprite(texture, 160, 18, 16, 18),
+                        new Sprite(texture, 176, 18, 16, 18),
+                        new Sprite(texture, 192, 18, 16, 18),
+                        new Sprite(texture, 192, 18, 16, 18)
+                    }
+                    ),
+                new SpriteAnimation(
+                    new Sprite[]
+                    {
+                        new Sprite(texture, 144, 54, 16, 18),
+                        new Sprite(texture, 160, 54, 16, 18),
+                        new Sprite(texture, 176, 54, 16, 18),
+                        new Sprite(texture, 192, 54, 16, 18),
+                        new Sprite(texture, 192, 54, 16, 18)
+                    }
+                    ),
+                new SpriteAnimation(
+                    new Sprite[]
+                    {
+                        new Sprite(texture, 144, 36, 16, 18),
+                        new Sprite(texture, 160, 36, 16, 18),
+                        new Sprite(texture, 176, 36, 16, 18),
+                        new Sprite(texture, 192, 36, 16, 18),
+                        new Sprite(texture, 192, 36, 16, 18)
+                    }
+                    )
+            };
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            switch (State)
+            {
+                case CharacterState.Idle:
+                    if (_random.NextDouble() < MOVE_INTERVAL)
+                    {
+                        Move?.Invoke();
+                    }
+
+                    _timeElapsed = 0;
+
+                    foreach (SpriteAnimation sa in _animations)
+                        sa.Time = 0;
+
+                    if (Commands[0] != null)
+                    {
+                        foreach (ICommand command in Commands)
+                            command.Run(this);
+                    }
+                    Commands[0] = null;
+                    break;
+
+                case CharacterState.Moving:
+
+                    MoveLerp(gameTime);
+                    break;
+
+                case CharacterState.Dialogue:
+
+                    
+                    break;
+
+            }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (Location.Floor == PlayerFloor)
+            {
+                switch (State)
+                {
+                    case CharacterState.Idle:
+                        _sprites[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
+                        break;
+
+                    case CharacterState.Moving:
+                        _animations[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
+                        break;
+
+                    case CharacterState.Dialogue:
+                        _sprites[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
+                        break;
+                }
+            }
+        }
+    }
+
     public class RedGirl : Character
     {
         private const float MOVE_INTERVAL = 0.008f;

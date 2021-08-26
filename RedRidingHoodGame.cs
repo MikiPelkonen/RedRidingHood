@@ -37,6 +37,7 @@ namespace RedRidingHood
         World _world;
         Player _player;
         RedGirl _redGirl;
+        Furry _furry;
         DialogueBoard _dialogueBoard;
 
         public static int ScreenHeight;
@@ -77,7 +78,7 @@ namespace RedRidingHood
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheetTwelve");
+            _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheetThirteen");
             _worldSheet = Content.Load<Texture2D>("Primitives/WorldHouseless");
             _houseInside = Content.Load<Texture2D>("Primitives/InsideHouseFurnitureTwo");
             _speechBubble = Content.Load<Texture2D>("Primitives/SpeechBubbleSix");
@@ -89,13 +90,14 @@ namespace RedRidingHood
             // Load Characters
             _player = new Player(new Location(10, 10, 0), _primitiveSpriteSheetTexture);
             _redGirl = new RedGirl(new Location(9, 3, 0), _primitiveSpriteSheetTexture);
+            _furry = new Furry(new Location(18, 6, 0), _primitiveSpriteSheetTexture);
 
             _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture, _worldSheet, _houseInside, _player, _entityManager);
             
             _inputController = new InputController(_player, _world, _entityManager);
             _camera = new Camera();
 
-            _npController = new NPController(_world, _redGirl, _player);
+            _npController = new NPController(_world, _redGirl, _player, _furry);
 
             _dialogueBoard = new DialogueBoard(_player, _redGirl, _speechBubble, _testFont);
             _ui = new UserInterface(_player, _inputController, _hpBar, _backbagSheet);
@@ -104,6 +106,7 @@ namespace RedRidingHood
             _entityManager.Add(_player);
             _entityManager.Add(_redGirl);
             _entityManager.Add(_dialogueBoard);
+            _entityManager.Add(_furry);
             
         }
 

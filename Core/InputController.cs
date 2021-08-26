@@ -61,7 +61,7 @@ namespace RedRidingHood.Core
                     };
                     Character target = _entityManager.CharacterByLocation(scoutLocation);
 
-                    if (target != null)
+                    if (target != null && !(target is Furry))
                     {
                         _player.Commands[0] = new InteractCommand(target, scoutLocation);
                     }

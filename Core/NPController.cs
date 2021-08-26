@@ -12,17 +12,20 @@ namespace RedRidingHood.Core
         RedGirl _redGirl;
         World _world;
         Player _player;
+        Furry _furry;
         Random _random = new Random();
 
         public int CurrentFloor => _player.Location.Floor;
 
-        public NPController(World world, RedGirl redGirl, Player player)
+        public NPController(World world, RedGirl redGirl, Player player, Furry furry)
         {
             _world = world;
             _player = player;
             _redGirl = redGirl;
             _redGirl.Move += OnRedGirlMove;
             _redGirl.DialogueOver += OnRedGirlDialogueOver;
+            _furry = furry;
+            _furry.Move += OnFurryMove;
         }
 
         private void OnRedGirlMove()
@@ -35,6 +38,18 @@ namespace RedRidingHood.Core
                 3 => Direction.West
             };
             _redGirl.Commands[0] = new MoveCommand(randomDirection, _world);
+        }
+
+        private void OnFurryMove()
+        {
+            Direction randomDirection = _random.Next(4) switch
+            {
+                0 => Direction.North,
+                1 => Direction.South,
+                2 => Direction.East,
+                3 => Direction.West
+            };
+            _furry.Commands[0] = new MoveCommand(randomDirection, _world);
         }
 
         private void OnRedGirlDialogueOver()

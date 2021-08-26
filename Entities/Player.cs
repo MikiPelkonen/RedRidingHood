@@ -74,6 +74,9 @@ namespace RedRidingHood.Entities
         {
             Items.Add(new Bread());
             Items.Add(new Honey());
+            Items.Add(new Bread());
+            Items.Add(new Honey());
+            Items.Add(new Honey());
         }
 
         public void Add(InventoryItem item)
