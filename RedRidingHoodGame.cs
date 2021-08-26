@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using RedRidingHood.Core;
 using RedRidingHood.Entities;
 using RedRidingHood.Graphics;
+using RedRidingHood.UI;
 
 namespace RedRidingHood
 {
@@ -17,11 +18,15 @@ namespace RedRidingHood
         Texture2D _worldSheet;
         Texture2D _houseInside;
         Texture2D _speechBubble;
+        Texture2D _hpBar;
 
         // Core
         InputController _inputController;
         NPController _npController;
         Camera _camera;
+
+        // UI
+        UserInterface _ui;
 
         // Fonts
         SpriteFont _testFont;
@@ -75,6 +80,7 @@ namespace RedRidingHood
             _worldSheet = Content.Load<Texture2D>("Primitives/WorldHouseless");
             _houseInside = Content.Load<Texture2D>("Primitives/InsideHouseFurnitureTwo");
             _speechBubble = Content.Load<Texture2D>("Primitives/SpeechBubbleSix");
+            _hpBar = Content.Load<Texture2D>("Primitives/HPBarThree");
 
             _testFont = Content.Load<SpriteFont>("TestFont");
 
@@ -90,6 +96,7 @@ namespace RedRidingHood
             _npController = new NPController(_world, _redGirl, _player);
 
             _dialogueBoard = new DialogueBoard(_player, _redGirl, _speechBubble, _testFont);
+            _ui = new UserInterface(_player, _hpBar);
 
             _entityManager.Add(_world);
             _entityManager.Add(_player);
@@ -109,6 +116,7 @@ namespace RedRidingHood
             _entityManager.Update(gameTime);
             _camera.Follow(_player);
             _npController.Update();
+            _ui.Update(gameTime);
 
 
             base.Update(gameTime);
@@ -129,15 +137,24 @@ namespace RedRidingHood
 
             _spriteBatch.End();
 
+            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, RasterizerState.CullNone);
+
+            _ui.Draw(_spriteBatch, gameTime);
+
+            _spriteBatch.End();
+
 
             GraphicsDevice.SetRenderTarget(null);
         }
+
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             DrawSceneToTexture(_renderTarget, gameTime);
+
+            
 
             // Clear screen to black
             GraphicsDevice.Clear(Color.Black);
