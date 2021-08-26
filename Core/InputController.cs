@@ -11,10 +11,12 @@ namespace RedRidingHood.Core
 {
     public class InputController
     {
-        KeyboardState keyboardState;
+        KeyboardState keyboardState, lastKeyboardState;
         Player _player;
         World _world;
         EntityManager _entityManager;
+
+        public event Action ToggleBackbag;
 
         public InputController(Player player, World world, EntityManager entityManager)
         {
@@ -25,8 +27,15 @@ namespace RedRidingHood.Core
 
         public void ProcessControls(GameTime gameTime)
         {
+            lastKeyboardState = keyboardState;
             keyboardState = Keyboard.GetState();
-            
+
+            // User Interface commands
+            if (keyboardState.IsKeyDown(Keys.B) && !lastKeyboardState.IsKeyDown(Keys.B))
+            {
+                ToggleBackbag?.Invoke();
+            }
+
             if (_player.State == CharacterState.Idle)
             {
                 // Basic Movement commands

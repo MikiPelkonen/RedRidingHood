@@ -19,6 +19,7 @@ namespace RedRidingHood
         Texture2D _houseInside;
         Texture2D _speechBubble;
         Texture2D _hpBar;
+        Texture2D _backbagSheet;
 
         // Core
         InputController _inputController;
@@ -81,6 +82,7 @@ namespace RedRidingHood
             _houseInside = Content.Load<Texture2D>("Primitives/InsideHouseFurnitureTwo");
             _speechBubble = Content.Load<Texture2D>("Primitives/SpeechBubbleSix");
             _hpBar = Content.Load<Texture2D>("Primitives/HPBarThree");
+            _backbagSheet = Content.Load<Texture2D>("Primitives/BackbagSheet");
 
             _testFont = Content.Load<SpriteFont>("TestFont");
 
@@ -96,7 +98,7 @@ namespace RedRidingHood
             _npController = new NPController(_world, _redGirl, _player);
 
             _dialogueBoard = new DialogueBoard(_player, _redGirl, _speechBubble, _testFont);
-            _ui = new UserInterface(_player, _hpBar);
+            _ui = new UserInterface(_player, _inputController, _hpBar, _backbagSheet);
 
             _entityManager.Add(_world);
             _entityManager.Add(_player);

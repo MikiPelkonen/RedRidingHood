@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using RedRidingHood.Graphics;
+using System.Collections.Generic;
 
 namespace RedRidingHood.Entities
 {
@@ -67,28 +68,21 @@ namespace RedRidingHood.Entities
 
     public class Inventory
     {
-        private InventoryItem[] _items;
+        public List<InventoryItem> Items { get; } = new List<InventoryItem>();
 
         public Inventory()
         {
-            _items = new InventoryItem[]
-            {
-                new Honey(),
-                new Honey(),
-                new Honey(),
-                new Honey(),
-                new Honey(),
-                new Honey()
-            };
+            Items.Add(new Bread());
+            Items.Add(new Honey());
         }
 
-        public void Add()
+        public void Add(InventoryItem item)
         {
-
+            Items.Add(item);
         }
-        public void Remove()
+        public void Remove(InventoryItem item)
         {
-
+            Items.Remove(item);
         }
     }
 
@@ -98,6 +92,11 @@ namespace RedRidingHood.Entities
     }
 
     public class Honey : InventoryItem
+    {
+
+    }
+
+    public class Bread : InventoryItem
     {
 
     }
