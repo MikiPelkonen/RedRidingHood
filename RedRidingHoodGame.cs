@@ -78,7 +78,7 @@ namespace RedRidingHood
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheetFourteen");
+            _primitiveSpriteSheetTexture = Content.Load<Texture2D>("Primitives/PrimitiveSpriteSheetFifteen");
             _worldSheet = Content.Load<Texture2D>("Primitives/WorldHouseless");
             _houseInside = Content.Load<Texture2D>("Primitives/InsideHouseFurnitureTwo");
             _speechBubble = Content.Load<Texture2D>("Primitives/SpeechBubbleSix");

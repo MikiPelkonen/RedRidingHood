@@ -33,7 +33,7 @@ namespace RedRidingHood.Entities
             Direction.West => 2,
             Direction.East => 3
         };
-        public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
+        public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y - 16, 32, 32);
         public float Depth => (float)(Location.Row * 0.01f);
         public ICommand[] Commands { get; } = new ICommand[1];
         public Character(Location startLocation)

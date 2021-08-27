@@ -18,7 +18,6 @@ namespace RedRidingHood.Core
         EntityManager _entityManager;
 
         public event Action ToggleBackbag;
-        public event Action Shoot;
 
         public InputController(Player player, World world, EntityManager entityManager)
         {
@@ -38,11 +37,16 @@ namespace RedRidingHood.Core
                 ToggleBackbag?.Invoke();
             }
 
+            // Player shooting
             if (keyboardState.IsKeyDown(Keys.Left) && !lastKeyboardState.IsKeyDown(Keys.Left))
-            {
-                _player.Shoot(_entityManager);
-                Shoot?.Invoke();
-            }
+                _player.Shoot(_entityManager, Direction.West);
+            else if (keyboardState.IsKeyDown(Keys.Right) && !lastKeyboardState.IsKeyDown(Keys.Right))
+                _player.Shoot(_entityManager, Direction.East);
+            else if (keyboardState.IsKeyDown(Keys.Up) && !lastKeyboardState.IsKeyDown(Keys.Up))
+                _player.Shoot(_entityManager, Direction.North);
+            else if (keyboardState.IsKeyDown(Keys.Down) && !lastKeyboardState.IsKeyDown(Keys.Down))
+                _player.Shoot(_entityManager, Direction.South);
+
 
             if (_player.State == CharacterState.Idle)
             {

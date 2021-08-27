@@ -16,6 +16,8 @@ namespace RedRidingHood.Entities
         public Inventory Inventory { get; set; }
         public int MaxHp { get; } = 5;
         public int CurrentHp { get; set; } = 5;
+
+        public Direction LastShotDir { get; set; }
         public Player(Location startLocation, Texture2D texture) : base(startLocation)
         {
             _texture = texture;
@@ -74,11 +76,35 @@ namespace RedRidingHood.Entities
             };
         }
 
-        public void Shoot(EntityManager entityManager)
+        public void Shoot(EntityManager entityManager, Direction direction)
         {
-            entityManager.Add(new Bullet(new Sprite(_texture, 176, 80, 8, 4), entityManager, Position, Depth));
+            Sprite bulletSprite = direction switch
+            {
+                Direction.North     =>  new Sprite(_texture, 180, 85, 4, 8),
+                Direction.South     =>  new Sprite(_texture, 184, 86, 4, 8),
+                Direction.East      =>  new Sprite(_texture, 184, 80, 8, 4),
+                Direction.West      =>  new Sprite(_texture, 176, 80, 8, 4)
+            };
+
+            entityManager.Add(new Bullet(bulletSprite, entityManager, Position, Depth, direction));
+            LastShotDir = direction;
             _shot = true;
             _timer = 0;
+        }
+
+        private void DrawShoot(SpriteBatch spriteBatch)
+        {
+            Sprite toDraw = LastShotDir switch
+            {
+                Direction.West  =>  _shooting,
+                Direction.East  =>  new Sprite(_texture, 160, 80, 16, 18),
+                Direction.North =>  new Sprite(_texture, 160, 97, 16, 18),
+                Direction.South =>  new Sprite(_texture, 144, 97, 16, 19),
+                _               =>  _shooting
+            };
+
+
+            toDraw.Draw(spriteBatch, Position + _offset, Depth);
         }
 
         public override void Update(GameTime gameTime)
@@ -113,19 +139,18 @@ namespace RedRidingHood.Entities
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             
-
             switch (State)
             {
                 case CharacterState.Idle:
                     if (_shot)
-                        _shooting.Draw(spriteBatch, Position + _offset, Depth + 0.1f);
+                        DrawShoot(spriteBatch);
                     else
                         _sprites[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
                     break;
 
                 case CharacterState.Moving:
                     if (_shot)
-                        _shooting.Draw(spriteBatch, Position + _offset, Depth + 0.1f);
+                        DrawShoot(spriteBatch);
                     else
                         _animations[CurrentDirection].Draw(spriteBatch, Position + _offset, Depth);
                     break;

@@ -61,6 +61,7 @@ namespace RedRidingHood.Core
         public void Update()
         {
             _redGirl.PlayerFloor = CurrentFloor;
+            _furry.PlayerFloor = CurrentFloor;
         }
     }
 }
