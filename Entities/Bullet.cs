@@ -74,7 +74,10 @@ namespace RedRidingHood.Entities
                 box.Inflate(-10, -3);
                 if (Rectangle.Intersects(box))
                 {
+                    furry.CurrentHp -= 1;
                     _entityManager.Remove(this);
+                    if (furry.CurrentHp <= 0)
+                        _entityManager.Remove(furry);
                 }
             }
         }

@@ -115,11 +115,18 @@ namespace RedRidingHood.Entities
     {
         private const float MOVE_INTERVAL = 0.008f;
         Random _random = new Random();
+        World _world;
+
+
+
         public int PlayerFloor { get; set; }
+        public int MaxHp { get; } = 3;
+        public int CurrentHp { get; set; } = 3;
 
         public event Action Move;
-        public Furry(Location startLocation, Texture2D texture) : base(startLocation)
+        public Furry(Location startLocation, Texture2D texture, World world) : base(startLocation)
         {
+            _world = world;
             _sprites = new Sprite[]
             {
                 new Sprite(texture, 160, 0, 16, 18),
@@ -180,7 +187,18 @@ namespace RedRidingHood.Entities
                 case CharacterState.Idle:
                     if (_random.NextDouble() < MOVE_INTERVAL)
                     {
-                        Move?.Invoke();
+                        //Move?.Invoke();
+
+                        Direction randomDirection = _random.Next(4) switch
+                        {
+                            0 => Direction.North,
+                            1 => Direction.South,
+                            2 => Direction.East,
+                            3 => Direction.West
+                        };
+                        Commands[0] = new MoveCommand(randomDirection, _world);
+
+
                     }
 
                     _timeElapsed = 0;
