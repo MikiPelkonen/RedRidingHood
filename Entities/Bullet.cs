@@ -24,7 +24,13 @@ namespace RedRidingHood.Entities
             _bulletSprite = sprite;
             _entityManager = entityManager;
             _spawnPos = spawnPos;
-            Position = new Vector2(spawnPos.X + 8, spawnPos.Y + 8);
+            Position = direction switch
+            {
+                Direction.North => new Vector2(spawnPos.X + 14, spawnPos.Y),
+                Direction.South => new Vector2(spawnPos.X + 14, spawnPos.Y + 8),
+                Direction.East => new Vector2(spawnPos.X + 8, spawnPos.Y + 6),
+                Direction.West => new Vector2(spawnPos.X + 8, spawnPos.Y + 6),
+            };
             _depth = depth;
             _direction = direction;
         }

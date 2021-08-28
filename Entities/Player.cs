@@ -86,7 +86,7 @@ namespace RedRidingHood.Entities
                 Direction.West      =>  new Sprite(_texture, 176, 80, 8, 4)
             };
 
-            entityManager.Add(new Bullet(bulletSprite, entityManager, Position, Depth, direction));
+            entityManager.Add(new Bullet(bulletSprite, entityManager, Position, Depth - 0.001f, direction));
             LastShotDir = direction;
             _shot = true;
             _timer = 0;
