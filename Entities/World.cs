@@ -14,6 +14,7 @@ namespace RedRidingHood.Entities
         Texture2D _houseTexture;
         Player _player;
         EntityManager _entityManager;
+        public Location PlayerLocation { get; private set; }
 
         public List<Location> CharLocations { get; private set; } = new List<Location>();
 
@@ -49,7 +50,6 @@ namespace RedRidingHood.Entities
 
         public void Update(GameTime gameTime)
         {
-
             TrackCharLocations();
         }
 

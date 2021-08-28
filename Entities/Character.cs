@@ -109,6 +109,18 @@ namespace RedRidingHood.Entities
                 _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
         }
+
+        protected void DeployMoveCommand(World world, Random random)
+        {
+            Direction randomDirection = random.Next(4) switch
+            {
+                0 => Direction.North,
+                1 => Direction.South,
+                2 => Direction.East,
+                3 => Direction.West
+            };
+            Commands[0] = new MoveCommand(randomDirection, world);
+        }
     }
 
     public class Furry : Character
@@ -116,17 +128,14 @@ namespace RedRidingHood.Entities
         private const float MOVE_INTERVAL = 0.008f;
         Random _random = new Random();
         World _world;
+        Player _player;
 
-
-
-        public int PlayerFloor { get; set; }
         public int MaxHp { get; } = 3;
         public int CurrentHp { get; set; } = 3;
-
-        public event Action Move;
-        public Furry(Location startLocation, Texture2D texture, World world) : base(startLocation)
+        public Furry(Location startLocation, Texture2D texture, World world, Player player) : base(startLocation)
         {
             _world = world;
+            _player = player;
             _sprites = new Sprite[]
             {
                 new Sprite(texture, 160, 0, 16, 18),
@@ -187,18 +196,7 @@ namespace RedRidingHood.Entities
                 case CharacterState.Idle:
                     if (_random.NextDouble() < MOVE_INTERVAL)
                     {
-                        //Move?.Invoke();
-
-                        Direction randomDirection = _random.Next(4) switch
-                        {
-                            0 => Direction.North,
-                            1 => Direction.South,
-                            2 => Direction.East,
-                            3 => Direction.West
-                        };
-                        Commands[0] = new MoveCommand(randomDirection, _world);
-
-
+                        DeployMoveCommand(_world, _random);
                     }
 
                     _timeElapsed = 0;
@@ -229,7 +227,7 @@ namespace RedRidingHood.Entities
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            if (Location.Floor == PlayerFloor)
+            if (Location.Floor == _player.Location.Floor)
             {
                 switch (State)
                 {
@@ -253,14 +251,14 @@ namespace RedRidingHood.Entities
     {
         private const float MOVE_INTERVAL = 0.008f;
         Random _random = new Random();
+        World _world;
+        Player _player;
 
-        public int PlayerFloor { get; set; }
-
-        public event Action Move;
-        public event Action DialogueOver;
         public event Action DialogueStart;
-        public RedGirl(Location startLocation, Texture2D texture) : base(startLocation)
+        public RedGirl(Location startLocation, Texture2D texture, World world, Player player) : base(startLocation)
         {
+            _world = world;
+            _player = player;
             _sprites = new Sprite[]
             {
                 new Sprite(texture, 96, 80, 16, 18),
@@ -321,7 +319,7 @@ namespace RedRidingHood.Entities
                 case CharacterState.Idle:
                     if (_random.NextDouble() < MOVE_INTERVAL)
                     {
-                        Move?.Invoke();
+                        DeployMoveCommand(_world, _random);
                     }
 
                     _timeElapsed = 0;
@@ -352,7 +350,7 @@ namespace RedRidingHood.Entities
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            if (Location.Floor == PlayerFloor)
+            if (Location.Floor == _player.Location.Floor)
             {
                 switch (State)
                 {

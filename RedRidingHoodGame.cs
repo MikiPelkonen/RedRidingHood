@@ -86,12 +86,13 @@ namespace RedRidingHood
 
             _testFont = Content.Load<SpriteFont>("TestFont");
 
-            // Load Characters
+            // Load player & world
             _player = new Player(new Location(10, 10, 0), _primitiveSpriteSheetTexture);
-            _redGirl = new RedGirl(new Location(9, 3, 0), _primitiveSpriteSheetTexture);
-
             _world = new WorldBuilder().CreateWorld(_primitiveSpriteSheetTexture, _worldSheet, _houseInside, _player, _entityManager);
-            
+
+            // Load NPCs after player & world
+            _redGirl = new RedGirl(new Location(9, 3, 0), _primitiveSpriteSheetTexture, _world, _player);
+
             _inputController = new InputController(_player, _world, _entityManager);
             _camera = new Camera();
 

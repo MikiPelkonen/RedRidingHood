@@ -29,39 +29,16 @@ namespace RedRidingHood.Core
             _world = world;
             _player = player;
             _redGirl = redGirl;
-            _redGirl.Move += OnRedGirlMove;
-            _redGirl.DialogueOver += OnRedGirlDialogueOver;
         }
 
-        private void OnRedGirlMove()
-        {
-            Direction randomDirection = _random.Next(4) switch
-            {
-                0 => Direction.North,
-                1 => Direction.South,
-                2 => Direction.East,
-                3 => Direction.West
-            };
-            _redGirl.Commands[0] = new MoveCommand(randomDirection, _world);
-        }
-
-        private void OnRedGirlDialogueOver()
-        {
-            _player.State = CharacterState.Idle;
-            _redGirl.State = CharacterState.Idle;
-        }
         
         public void Update(GameTime gameTime)
         {
-            _redGirl.PlayerFloor = CurrentFloor;
-
-
             if (_timer > 5f)
             {
                 SpawnFurry();
                 _timer = 0;
             }
-
 
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
@@ -70,7 +47,7 @@ namespace RedRidingHood.Core
         {
             Furry furry = null;
 
-            furry = new Furry(new Location(20, 7, 0), _spriteSheet, _world);
+            furry = new Furry(new Location(20, 7, 0), _spriteSheet, _world, _player);
 
             _entityManager.Add(furry);
         }
