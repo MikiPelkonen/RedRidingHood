@@ -42,7 +42,6 @@ namespace RedRidingHood
         public static int ScreenHeight;
         public static int ScreenWidth;
         
-
         public RedRidingHoodGame()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -153,7 +152,7 @@ namespace RedRidingHood
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             DrawSceneToTexture(_renderTarget, gameTime);
 
